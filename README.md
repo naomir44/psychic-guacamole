@@ -1,10 +1,9 @@
-# psychic-guacamole
-
-
+# AirBnB Clone
 ## Database Schema Design
 
-![db-schema]
-[db-schema]: ./images/psych-guac.png
+![airbnb-database-schema]
+
+[airbnb-db-diagram-info]: https://appacademy-open-assets.s3.us-west-1.amazonaws.com/Modular-Curriculum/content/week-12/airbnb-db-diagram-info.txt
 
 ## API Documentation
 
@@ -1456,3 +1455,4 @@ Return spots filtered by query parameters.
         "maxPrice": "Maximum price must be greater than or equal to 0"
       }
     }
+    ```
