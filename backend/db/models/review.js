@@ -5,7 +5,10 @@ const database = require('../../config/database');
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     static associate(models) {
-
+      Review.hasOne(
+        models.reviewImage,
+        { foreignKey: 'reviewId', onDelete: 'CASCADE' }
+      )
     }
   }
   Review.init({

@@ -91,4 +91,12 @@ router.get(
   }
 );
 
+//Get Current User
+
+// router.get(
+//   '/',
+//   (req, res) => {
+
+// )
+
 module.exports = router;

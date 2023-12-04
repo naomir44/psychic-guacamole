@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up (queryInterface, Sequelize) {
 options.tableName = 'Reviews';
-await Review.bulkCreate(options [
+await Review.bulkCreate(options, [
 {
   spotId: 1,
   userId: 1,
@@ -36,7 +36,7 @@ stars: 5
     options.tableName = 'Reviews';
     const Op = Sequelize.Op;
   return queryInterface.bulkDelete(options, {
-  name: { [Op.in]: ['this house was alright.', 'I love the theme.', 'This is the best airbnb!'] }
+  review: { [Op.in]: ['this house was alright.', 'I love the theme.', 'This is the best airbnb!'] }
   }, {});
   }
 };
