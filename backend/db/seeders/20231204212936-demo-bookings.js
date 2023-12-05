@@ -10,7 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up (queryInterface, Sequelize) {
     options.tableName = 'Bookings';
-    await Booking.bulkCreate([
+    await Booking.bulkCreate(//options
+    [
       {
         spotId: 1,
         userId: 1,
@@ -29,7 +30,7 @@ module.exports = {
         startDate: '2023-12-23',
         endDate: '2023-12-27'
       }
-    ], { validate: true });
+    ],{ validate: true });
   },
 
   async down (queryInterface, Sequelize) {

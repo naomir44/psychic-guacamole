@@ -10,7 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up (queryInterface, Sequelize) {
     options.tableName = 'Spots';
-    await Spot.bulkCreate([
+    await Spot.bulkCreate(//options
+    [
       {
         ownerId: 1,
         address: '5234 e Carlisle',
@@ -21,7 +22,9 @@ module.exports = {
         lng: -10.8544921875,
         name: 'Abq house',
         description: 'In da ghetto',
-        price: '134.00'
+        price: '134.00',
+        avgRating: 4,
+        previewImage: 'image url'
       },
       {
         ownerId: 2,
@@ -33,7 +36,9 @@ module.exports = {
         lng: -11.8544921875,
         name: 'Alien Themed Casa',
         description: 'This house is said to be built right next to the crash landing',
-        price: '250.00'
+        price: '250.00',
+        avgRating: 5,
+        previewImage: 'image url'
       },
       {
         ownerId: 3,
@@ -45,7 +50,9 @@ module.exports = {
         lng: -9.8544921875,
         name: 'Route 66',
         description: 'Based on the Cars movie and Route 66',
-        price: '150.00'
+        price: '150.00',
+        avgRating: 3,
+        previewImage: 'image url'
       }
     ], { validate: true });
   },

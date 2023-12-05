@@ -35,7 +35,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    price: DataTypes.DECIMAL
+    price: DataTypes.DECIMAL,
+    avgRating: DataTypes.INTEGER,
+    previewImage: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Spot',

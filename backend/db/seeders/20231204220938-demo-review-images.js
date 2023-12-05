@@ -11,7 +11,8 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up (queryInterface, Sequelize) {
    options.tableName = 'reviewImages';
-   await reviewImage.bulkCreate([
+   await reviewImage.bulkCreate(//options,
+   [
     {
       reviewId: 1,
       url: 'http://www.example.com/'
