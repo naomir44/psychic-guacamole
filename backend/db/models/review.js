@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
         models.reviewImage,
         { foreignKey: 'reviewId', onDelete: 'CASCADE' }
       )
+      Review.belongsTo(models.User, { foreignKey: 'userId'})
+      Review.belongsTo(models.Spot, { foreignKey: 'spotId'})
     }
   }
   Review.init({

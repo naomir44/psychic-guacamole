@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(
         models.Spot,
-        {foreignKey: 'userId', onDelete: 'CASCADE' }
+        {foreignKey: 'ownerId', onDelete: 'CASCADE' }
       )
       User.hasMany(
         models.Review,
@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
 
   User.init(
     {
-      firstname: {
+      firstName: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      lastname: {
+      lastName: {
         type: DataTypes.STRING,
         allowNull: false
       },
