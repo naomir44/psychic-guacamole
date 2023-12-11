@@ -22,7 +22,7 @@ const userId = req.user.id;
       }
     ]
   })
-  res.json({ reviews })
+ return res.json(reviews)
 });
 
 
@@ -52,7 +52,7 @@ else {
     reviewId: reviewId,
     url:url
   })
-  res.json(newImage)
+ return res.json(newImage)
 }
 });
 
@@ -75,7 +75,7 @@ const { review, stars } = req.body
 
     })
     await findReview.save();
-    res.json(findReview)
+   return res.json(findReview)
   }
   } catch(err) {
     console.error(err)
@@ -97,7 +97,7 @@ if (!deleteReview) {
   next(err)
 } else {
   await deleteReview.destroy()
-  res.json({
+ return res.json({
     message: "Successfully deleted"
   })
 }

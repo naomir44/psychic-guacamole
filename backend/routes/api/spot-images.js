@@ -15,7 +15,7 @@ if (!image) {
   next(err)
 } else {
     await image.destroy()
-    res.json({
+   return res.json({
         message: "Successfully deleted"
     })
 }

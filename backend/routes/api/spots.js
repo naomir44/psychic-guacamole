@@ -12,7 +12,7 @@ try {
   const spot = await Spot.findAll({
     attributes: ['id', 'ownerId', 'address','city','state','country','lat','lng','name','description','price','createdAt','updatedAt','avgRating','previewImage']
   })
-  res.json({ spot })
+ return res.json(spot)
 } catch(err) {
   console.error(err)
   next(err);
@@ -28,7 +28,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
     ownerId:userId
   }
  })
- res.json(spot)
+ return res.json(spot)
 });
 
 
@@ -42,7 +42,7 @@ try {
     where: {id: `${id}`},
     include: SpotImage
   });
-    res.json({ spot })
+  return res.json(spot)
 } catch {
   res.status(404).json({
     message: "Spot couldn't be found"
@@ -91,7 +91,7 @@ if(!spot) {
     url,
     preview
   })
-  res.json(newImage)
+  return res.json(newImage)
 }
 });
 
@@ -119,7 +119,7 @@ if (!spot) {
     price: price
   })
   await spot.save()
-  res.json(spot)
+  return res.json(spot)
 }
 
 } catch(err) {
@@ -168,7 +168,7 @@ router.get('/:spotId/reviews', async (req, res)=> {
         attributes: ['id', 'url']
       }]
     })
-    res.json({ reviews })
+   return res.json(reviews)
   }
    });
 
@@ -203,7 +203,7 @@ router.get('/:spotId/reviews', async (req, res)=> {
       review: review,
       stars: stars
     })
-    res.json({ newReview })
+    return res.status(201).json(newReview)
   }
 } catch(err) {
   console.error(err)

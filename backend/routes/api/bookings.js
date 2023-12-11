@@ -87,7 +87,7 @@ const booking = await Booking.findByPk(`${bookingId}`);
     next(err)
   } else {
       await booking.destroy()
-      res.json({
+     return res.json({
            message: "Successfully deleted"
       })
   }
