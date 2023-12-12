@@ -52,7 +52,7 @@ else {
     reviewId: reviewId,
     url:url
   })
- return res.json(newImage)
+      return res.json(newImage)
 }
 });
 

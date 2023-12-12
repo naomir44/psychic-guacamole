@@ -79,12 +79,13 @@ return res.status(201).json(newSpot)
 router.post('/:spotId/images', requireAuth, async (req, res, next)=> {
 const spotId = req.params.spotId;
 const userId = req.user.id;
+
 const { url, preview } = req.body;
 
 const spot = await Spot.findByPk(`${spotId}`);
 if(!spot) {
   const err = new Error("Spot couldn't be found")
-  err.status = 404;
+  err.status = 404
   next(err)
 } else {
   const newImage = await SpotImage.create({
@@ -222,7 +223,7 @@ if (!spotBooking) {
   const err = new Error("Spot couldn't be found")
   err.status = 404;
   next(err)
-} else if (spot.ownerId === userId) {
+} else if (Spot.ownerId === userId) {
   const ownerBooking = await Booking.findAll({
     where: {
       userId: userId
