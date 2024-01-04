@@ -255,7 +255,15 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next)=> {
     const err = new Error("Spot couldn't be found")
     err.status = 404;
     next(err)
-  };
+  } else if (startDate === endDate || endDate < startDate) {
+    return res.status(400).json({
+      "message": "Bad Request",
+      "errors": {
+        "startDate": "startDate cannot be in the past",
+        "endDate": "endDate cannot be on or before startDate"
+      }
+    })
+  }
       try {
         const bookings = await Booking.findAll({
           where: {
@@ -272,7 +280,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next)=> {
                 "endDate": "End date conflicts with an existing booking"
               }
             })
-          });
+          })
               const validBooking = await Booking.create({
                 spotId: spotId,
                 userId: userId,
