@@ -18,7 +18,7 @@ const userId = req.user.id;
         model: Spot
       },
       {
-        model: reviewImage
+        model: ReviewImage
       }
     ]
   })

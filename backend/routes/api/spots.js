@@ -1,5 +1,5 @@
 const express = require('express');
-const { Spot, SpotImage, User, Review, reviewImage, Booking } = require('../../db/models');
+const { Spot, spotImage, User, Review, reviewImage, Booking } = require('../../db/models');
 // const spot = require('../../db/models/spot');
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
@@ -40,7 +40,7 @@ const id = req.params.spotId;
 try {
   const spot = await Spot.findAll({
     where: {id: `${id}`},
-    include: SpotImage
+    include: spotImage
   });
   return res.json(spot)
 } catch {
@@ -65,7 +65,7 @@ try{
     lng,
     name,
     description,
-    price
+    price,
 })
 return res.status(201).json(newSpot)
 
@@ -78,19 +78,17 @@ return res.status(201).json(newSpot)
 //Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async (req, res, next)=> {
 const spotId = req.params.spotId;
-const userId = req.user.id;
-
 const { url, preview } = req.body;
 
 const spot = await Spot.findByPk(`${spotId}`);
 if(!spot) {
   const err = new Error("Spot couldn't be found")
-  err.status = 404
+  err.status = 404;
   next(err)
 } else {
-  const newImage = await SpotImage.create({
+  const newImage = await spotImage.create({
     url,
-    preview
+    preview,
   })
   return res.json(newImage)
 }
