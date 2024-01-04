@@ -18,7 +18,7 @@ const userId = req.user.id;
         model: Spot
       },
       {
-        model: ReviewImage
+        model: reviewImage
       }
     ]
   })
@@ -31,15 +31,15 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 const reviewId = req.params.reviewId;
 const { url } = req.body;
 
-const review = await Spot.findByPk(`${reviewId}`);
+const review = await Review.findByPk(`${reviewId}`);
 if(!review) {
   const err = new Error("Review couldn't be found")
   err.status = 404;
   next(err)
 }
-const numImages = await Review.count({
+const numImages = await reviewImage.count({
   where: {
-    review: reviewId
+    reviewId: reviewId
   }
 })
 if (numImages > 10) {
@@ -50,16 +50,16 @@ if (numImages > 10) {
 else {
   const newImage = await reviewImage.create({
     reviewId: reviewId,
-    url:url
+    url: url
   })
       return res.json(newImage)
-}
+    }
 });
 
 // Edit a Review
 router.put('/:reviewId', requireAuth, async (req, res, next)=> {
   const reviewId = req.params.reviewId;
-const { review, stars } = req.body
+  const { review, stars } = req.body
 
   try {
     const findReview = await Review.findByPk(`${reviewId}`)
@@ -68,7 +68,19 @@ const { review, stars } = req.body
     err.status = 404;
     next(err)
 
-  } else {
+  } else if (review.length === 0) {
+    res.status(400).json({
+      "message": "Bad Request",
+      "errors": "Review text is required"
+    })
+  } else if (isNaN(stars) || stars < 0 || stars > 5) {
+    res.status(400).json({
+      "message": "Bad Request",
+      "errors": "Stars must be an integer from 1 to 5"
+    })
+
+  }
+  else {
     findReview.set({
       review: review,
       stars: stars

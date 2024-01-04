@@ -147,7 +147,7 @@ if(!spot) {
 
 
 // Get all Reviews by a Spot's id
-router.get('/:spotId/reviews', async (req, res)=> {
+router.get('/:spotId/reviews', async (req, res, next)=> {
   const spotId = req.params.spotId;
 
   const spot = await Spot.findByPk(`${spotId}`);
