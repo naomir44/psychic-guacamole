@@ -23,7 +23,6 @@ const bookings = await Booking.findAll({
 //Edit a Booking
 router.put('/:bookingId', requireAuth, async(req, res, next)=> {
   const bookingId = req.params.id
-  const userId = req.user.id
 
   const { startDate, endDate } = req.body;
   const today = new Date()

@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
 try {
   const spot = await Spot.findAll({
-    attributes: ['id', 'ownerId', 'address','city','state','country','lat','lng','name','description','price','createdAt','updatedAt','avgRating','previewImage']
+    attributes: ['id', 'ownerId', 'address','city','state','country','lat','lng','name','description','price','createdAt','updatedAt']
   })
  return res.json(spot)
 } catch(err) {
