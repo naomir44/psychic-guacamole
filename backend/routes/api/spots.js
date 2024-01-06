@@ -20,7 +20,7 @@ try {
 });
 
 //get all spots owned by the current user
-router.get('/current', requireAuth, async (req, res, next) => {
+router.get('/current', requireAuth, async (req, res) => {
  const userId = req.user.id;
 
  const spot = await Spot.findAll({
@@ -34,7 +34,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
 //Get details of a Spot from an id
 
-router.get('/:spotId', requireAuth, async (req, res, next)=> {
+router.get('/:spotId', requireAuth, async (req, res)=> {
 const id = req.params.spotId;
 
 try {
