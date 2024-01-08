@@ -55,20 +55,36 @@ router.post('/', requireAuth, async (req, res, next)=> {
 const { address, city, state, country, lat, lng, name, description, price } = req.body;
 const userId = req.user.id;
 try{
-  const newSpot = await Spot.create({
-    ownerId: userId,
-    address,
-    city,
-    state,
-    country,
-    lat,
-    lng,
-    name,
-    description,
-    price,
-})
-return res.status(201).json(newSpot)
-
+  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+    return res.status(400).json({
+      "message": "Bad Request",
+  "errors": {
+    "address": "Street address is required",
+    "city": "City is required",
+    "state": "State is required",
+    "country": "Country is required",
+    "lat": "Latitude must be within -90 and 90",
+    "lng": "Longitude must be within -180 and 180",
+    "name": "Name must be less than 50 characters",
+    "description": "Description is required",
+    "price": "Price per day must be a positive number"
+    }
+  })
+  } else {
+    const newSpot = await Spot.create({
+      ownerId: userId,
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+  })
+  return res.status(201).json(newSpot)
+  }
 } catch(err){
   console.error(err)
   next(err)
