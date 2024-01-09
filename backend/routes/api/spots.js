@@ -4,6 +4,43 @@ const { Spot, spotImage, User, Review, reviewImage, Booking } = require('../../d
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
 const router = express.Router();
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+
+const validateCreateSpot = [
+  check('address')
+    .exists({ checkFalsy: true })
+    .withMessage('Street address is required'),
+  check('city')
+    .exists({ checkFalsy: true })
+    .withMessage('City is required'),
+  check('state')
+    .exists({ checkFalsy: true })
+    .withMessage('State is required'),
+  check('country')
+    .exists({ checkFalsy: true })
+    .withMessage('Country is required'),
+  check('lat')
+    .isLatLong({ min: -90, max: 90 })
+    // .isLength({ min: -90, max: 90 })
+    .withMessage('Latitude must be within -90 and 90'),
+  check('lng')
+    .isLatLong({ min: -180, max: 180 })
+    .withMessage('Longitude must be within -180 and 180'),
+  check('name')
+    .exists({ checkFalsy: true })
+    .isLength({ max: 50 })
+    .withMessage('Name must be less than 50 characters'),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Description is required'),
+  check('price')
+    .exists({ checkFalsy: true })
+    .isFloat({ min: 0 })
+    .withMessage('Price per day must be a positive number'),
+    handleValidationErrors
+];
+
 
 
 //get all spots
@@ -51,26 +88,11 @@ try {
 });
 
 //Create a Spot
-router.post('/', requireAuth, async (req, res, next)=> {
+router.post('/', requireAuth, validateCreateSpot, async (req, res, next)=> {
 const { address, city, state, country, lat, lng, name, description, price } = req.body;
 const userId = req.user.id;
+
 try{
-  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-    return res.status(400).json({
-      "message": "Bad Request",
-  "errors": {
-    "address": "Street address is required",
-    "city": "City is required",
-    "state": "State is required",
-    "country": "Country is required",
-    "lat": "Latitude must be within -90 and 90",
-    "lng": "Longitude must be within -180 and 180",
-    "name": "Name must be less than 50 characters",
-    "description": "Description is required",
-    "price": "Price per day must be a positive number"
-    }
-  })
-  } else {
     const newSpot = await Spot.create({
       ownerId: userId,
       address,
@@ -84,7 +106,7 @@ try{
       price,
   })
   return res.status(201).json(newSpot)
-  }
+
 } catch(err){
   console.error(err)
   next(err)
@@ -103,8 +125,9 @@ if(!spot) {
   next(err)
 } else {
   const newImage = await spotImage.create({
+    spotId,
     url,
-    preview,
+    preview
   })
   return res.json(newImage)
 }
