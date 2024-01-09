@@ -21,11 +21,10 @@ const validateCreateSpot = [
     .exists({ checkFalsy: true })
     .withMessage('Country is required'),
   check('lat')
-    .isLatLong({ min: -90, max: 90 })
-    // .isLength({ min: -90, max: 90 })
+    .isFloat({ min: -90, max: 90 })
     .withMessage('Latitude must be within -90 and 90'),
   check('lng')
-    .isLatLong({ min: -180, max: 180 })
+    .isFloat({ min: -180, max: 180 })
     .withMessage('Longitude must be within -180 and 180'),
   check('name')
     .exists({ checkFalsy: true })
@@ -134,7 +133,7 @@ if(!spot) {
 });
 
 //Edit a Spot
-router.put('/:spotId', requireAuth, async (req, res, next)=> {
+router.put('/:spotId',validateCreateSpot, requireAuth, async (req, res, next)=> {
 const spotId = req.params.spotId;
 const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
