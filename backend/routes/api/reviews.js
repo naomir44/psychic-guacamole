@@ -1,7 +1,22 @@
 const express = require('express');
 const { Spot, spotImage, Review, User, reviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
+
+
+const validateReviews = [
+  check('review')
+    .exists({ checkFalsy: true })
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .isFloat({ min: 1, max: 5 })
+    .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
+];
+
 
 // Get all Reviews of the Current User
 router.get('/current', requireAuth, async (req, res, next) => {
@@ -33,9 +48,9 @@ const { url } = req.body;
 
 const review = await Review.findByPk(`${reviewId}`);
 if(!review) {
-  const err = new Error("Review couldn't be found")
-  err.status = 404;
-  next(err)
+  return res.status(404).json({
+    message: "Review couldn't be found"
+  })
 }
 const numImages = await reviewImage.count({
   where: {
@@ -43,9 +58,9 @@ const numImages = await reviewImage.count({
   }
 })
 if (numImages > 10) {
-  const err = new Error("Maximum number of images for this resource was reached")
-  err.status = 403;
-  next(err)
+  return res.status(403).json({
+    message:"Maximum number of images for this resource was reached"
+  })
 }
 else {
   const newImage = await reviewImage.create({
@@ -57,30 +72,17 @@ else {
 });
 
 // Edit a Review
-router.put('/:reviewId', requireAuth, async (req, res, next)=> {
+router.put('/:reviewId',validateReviews, requireAuth, async (req, res, next)=> {
   const reviewId = req.params.reviewId;
   const { review, stars } = req.body
 
   try {
     const findReview = await Review.findByPk(`${reviewId}`)
   if (!findReview) {
-    const err = new Error("Review couldn't be found")
-    err.status = 404;
-    next(err)
-
-  } else if (review.length === 0) {
-    res.status(400).json({
-      "message": "Bad Request",
-      "errors": "Review text is required"
+    return res.status(404).json({
+      message: "Review couldn't be found"
     })
-  } else if (isNaN(stars) || stars < 0 || stars > 5) {
-    res.status(400).json({
-      "message": "Bad Request",
-      "errors": "Stars must be an integer from 1 to 5"
-    })
-
-  }
-  else {
+  } else {
     findReview.set({
       review: review,
       stars: stars
@@ -93,20 +95,18 @@ router.put('/:reviewId', requireAuth, async (req, res, next)=> {
     console.error(err)
     next(err)
   }
-
 });
 
 
 // Delete a Review
-
-router.delete('/:reviewId', requireAuth, async (req, res, next)=> {
+router.delete('/:reviewId', requireAuth, async (req, res)=> {
 const reviewId = req.params.reviewId;
 
 const deleteReview = await Review.findByPk(`${reviewId}`);
 if (!deleteReview) {
-  const err = new Error("Review couldn't be found")
-  err.status = 404;
-  next(err)
+  return res.status(404).json({
+    message: "Review couldn't be found"
+  })
 } else {
   await deleteReview.destroy()
  return res.json({
@@ -114,7 +114,6 @@ if (!deleteReview) {
   })
 }
 });
-
 
 
 

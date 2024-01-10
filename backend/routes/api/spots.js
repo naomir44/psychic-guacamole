@@ -7,6 +7,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+
 const validateCreateSpot = [
   check('address')
     .exists({ checkFalsy: true })
@@ -38,6 +39,17 @@ const validateCreateSpot = [
     .isFloat({ min: 0 })
     .withMessage('Price per day must be a positive number'),
     handleValidationErrors
+];
+
+const validateReviews = [
+  check('review')
+    .exists({ checkFalsy: true })
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .isFloat({ min: 1, max: 5 })
+    .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
 ];
 
 
@@ -119,9 +131,9 @@ const { url, preview } = req.body;
 
 const spot = await Spot.findByPk(`${spotId}`);
 if(!spot) {
-  const err = new Error("Spot couldn't be found")
-  err.status = 404;
-  next(err)
+  return res.status(404).json({
+    message: "Spot couldn't be found"
+  })
 } else {
   const newImage = await spotImage.create({
     spotId,
@@ -140,9 +152,9 @@ const { address, city, state, country, lat, lng, name, description, price } = re
 try {
 const spot = await Spot.findByPk(spotId)
 if (!spot) {
-  const err = new Error("Spot couldn't be found")
-  err.status = 404
-  next(err)
+  return res.status(404).json({
+    message: "Spot couldn't be found"
+  })
 } else {
   spot.set({
     address: address,
@@ -172,9 +184,9 @@ const spotId = req.params.spotId;
 
 const spot = await Spot.findByPk(`${spotId}`);
 if(!spot) {
-  const err = new Error("Spot couldn't be found")
-  err.status = 404;
-  next(err)
+  return res.status(404).json({
+    message: "Spot couldn't be found"
+  })
 }else {
    await spot.destroy();
    return res.json({
@@ -190,9 +202,9 @@ router.get('/:spotId/reviews', async (req, res, next)=> {
 
   const spot = await Spot.findByPk(`${spotId}`);
   if (!spot) {
-    const err = new Error("Spot couldn't be found")
-    err.status = 404
-    next(err)
+    return res.status(404).json({
+      message: "Spot couldn't be found"
+    })
   } else {
     const reviews = await Review.findAll({
       where: { spotId: spotId },
@@ -211,7 +223,7 @@ router.get('/:spotId/reviews', async (req, res, next)=> {
 
 
   //  Create a Review for a Spot based on the Spot's id
-  router.post('/:spotId/reviews', requireAuth, async (req, res, next)=> {
+  router.post('/:spotId/reviews', validateReviews, requireAuth, async (req, res, next)=> {
     const spotId = req.params.spotId;
     const userId = req.user.id
     const { review, stars } = req.body;
@@ -225,14 +237,13 @@ router.get('/:spotId/reviews', async (req, res, next)=> {
        }
     })
     if (!spot) {
-    const err = new Error("Spot couldn't be found")
-    err.status = 404
-    next(err)
-}
-  else if (reviews.length) {
-    const err = new Error("User already has a review for this spot")
-    err.status = 500
-    next(err)
+      return res.status(404).json({
+        message: "Spot couldn't be found"
+      })
+} else if (reviews.length) {
+  return res.status(500).json({
+    message: "User already has a review for this spot"
+  })
   }else {
     const newReview = await Review.create({
       userId: userId,
@@ -256,9 +267,9 @@ const userId = req.user.id;
 
 const spotBooking = await Spot.findByPk(`${spotId}`);
 if (!spotBooking) {
-  const err = new Error("Spot couldn't be found")
-  err.status = 404;
-  next(err)
+  return res.status(404).json({
+    message: "Spot couldn't be found"
+  })
 } else if (Spot.ownerId === userId) {
   const ownerBooking = await Booking.findAll({
     where: {
@@ -290,9 +301,9 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next)=> {
 
   const spot = await Spot.findByPk(`${spotId}`);
   if (!spot) {
-    const err = new Error("Spot couldn't be found")
-    err.status = 404;
-    next(err)
+    return res.status(404).json({
+      message: "Spot couldn't be found"
+    })
   } else if (startDate === endDate || endDate < startDate) {
     return res.status(400).json({
       "message": "Bad Request",

@@ -29,13 +29,13 @@ router.put('/:bookingId', requireAuth, async(req, res, next)=> {
 
   const booking = await Booking.findByPk(`${bookingId}`)
   if (!booking) {
-    const err = new Error("Booking couldn't be found")
-    err.status = 404;
-    next(err)
+    return res.status(404).json({
+      message: "Booking couldn't be found"
+    })
   } else if (endDate <= today) {
-    const err = new Error("Past bookings can't be modified")
-    err.status = 403
-    next(err)
+    return res.status(403).json({
+      message: "Past bookings can't be modified"
+    })
   }
   try {
     const bookings = await Booking.findAll({
@@ -77,13 +77,13 @@ const today = new Date();
 const booking = await Booking.findByPk(`${bookingId}`);
 
   if (!booking) {
-    const err = new Error("Booking couldn't be found")
-    err.status = 404;
-    next(err)
+    return res.status(404).json({
+      message: "Booking couldn't be found"
+    })
   } else if (booking.startDate >= today) {
-    const err = new Error("Bookings that have been started can't be deleted")
-    res.status = 404;
-    next(err)
+    return res.status(403).json({
+      message: "Bookings that have been started can't be deleted"
+    })
   } else {
       await booking.destroy()
      return res.json({
