@@ -51,15 +51,13 @@ app.use((_req, _res, next) => {
   next(err);
 });
 
-app.use((err, _req, _res, next) => {
+app.use((err, req, res, next) => {
   // check if error is a Sequelize error:
   if (err instanceof ValidationError) {
     let errors = {};
     for (let error of err.errors) {
       errors[error.path] = error.message;
     }
-    // err.title = 'Validation error';
-    // err.errors = errors;
     res.status(400).json({
       message: "Bad Request",
       errors

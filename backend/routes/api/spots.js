@@ -152,7 +152,7 @@ else {
 });
 
 //Edit a Spot
-router.put('/:spotId',validateCreateSpot, requireAuth, async (req, res, next)=> {
+router.put('/:spotId',requireAuth, validateCreateSpot, async (req, res, next)=> {
 const spotId = req.params.spotId;
 const user = req.user.id;
 const { address, city, state, country, lat, lng, name, description, price } = req.body;

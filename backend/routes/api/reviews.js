@@ -77,7 +77,7 @@ else {
 });
 
 // Edit a Review
-router.put('/:reviewId',validateReviews, requireAuth, async (req, res, next)=> {
+router.put('/:reviewId',requireAuth, validateReviews, async (req, res, next)=> {
   const reviewId = req.params.reviewId;
   const user = req.user.id;
   const { review, stars } = req.body
