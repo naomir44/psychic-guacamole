@@ -23,6 +23,7 @@ const bookings = await Booking.findAll({
 //Edit a Booking
 router.put('/:bookingId', requireAuth, async(req, res, next)=> {
   const bookingId = req.params.id
+  const user = req.user.id;
 
   const { startDate, endDate } = req.body;
   const today = new Date()
@@ -32,7 +33,12 @@ router.put('/:bookingId', requireAuth, async(req, res, next)=> {
     return res.status(404).json({
       message: "Booking couldn't be found"
     })
-  } else if (endDate <= today) {
+  } else if (booking.id !== user) {
+    return res.status(403).json({
+      message: "Forbidden"
+    })
+  }
+  else if (endDate <= today) {
     return res.status(403).json({
       message: "Past bookings can't be modified"
     })
@@ -72,6 +78,7 @@ router.put('/:bookingId', requireAuth, async(req, res, next)=> {
 
 router.delete('/:bookingsId', requireAuth, async (req, res, next)=> {
 const bookingId = req.params.bookingId;
+const user = req.user.id;
 const today = new Date();
 
 const booking = await Booking.findByPk(`${bookingId}`);
@@ -80,7 +87,12 @@ const booking = await Booking.findByPk(`${bookingId}`);
     return res.status(404).json({
       message: "Booking couldn't be found"
     })
-  } else if (booking.startDate >= today) {
+  } else if (booking.id !== user || Spot.id !== user) {
+      return res.status(403).json({
+        message: "Forbidden"
+      })
+  }
+  else if (booking.startDate >= today) {
     return res.status(403).json({
       message: "Bookings that have been started can't be deleted"
     })
