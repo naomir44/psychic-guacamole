@@ -52,7 +52,7 @@ if(!review) {
   return res.status(404).json({
     message: "Review couldn't be found"
   })
-} else if (review.id !== user) {
+} else if (review.userId !== user) {
   return res.status(403).json({
     message: "Forbidden"
   })
@@ -68,11 +68,20 @@ const numImages = await reviewImage.count({
   })
 }
 else {
-  const newImage = await reviewImage.create({
+  const newImage = reviewImage.build({
     reviewId: reviewId,
     url: url
   })
-      return res.json(newImage)
+
+    await newImage.save()
+      const image = await reviewImage.findByPk(newImage.id, {
+        attributes: [
+          "id",
+          "url"
+        ]
+      })
+
+      return res.json(image)
     }
 });
 

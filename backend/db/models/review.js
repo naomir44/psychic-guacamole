@@ -5,7 +5,7 @@ const database = require('../../config/database');
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     static associate(models) {
-      Review.hasOne(
+      Review.hasMany(
         models.reviewImage,
         { foreignKey: 'reviewId', onDelete: 'CASCADE' }
       )
