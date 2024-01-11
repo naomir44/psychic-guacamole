@@ -157,17 +157,25 @@ router.get('/current', requireAuth, async (req, res) => {
 router.get('/:spotId', async (req, res)=> {
 const id = req.params.spotId;
 
-try {
-  const spot = await Spot.findAll({
-    where: {id: `${id}`},
-    include: spotImage
-  });
-  return res.json(spot)
-} catch {
-  res.status(404).json({
-    message: "Spot couldn't be found"
-    })
-  }
+  const spot = await Spot.findByPk(id, {
+    include: [
+      {
+        model: spotImage,
+        attributes: ["id", "url", "preview"]
+      },
+      {
+        model: User,
+        as: "Owner",
+        attributes: ["id", "firstName", "lastName"]
+      }
+    ]
+  })
+    if (!spot) {
+      res.status(404).json({
+        message: "Spot couldn't be found"
+      })
+    }
+    return res.json(spot)
 });
 
 //Create a Spot
