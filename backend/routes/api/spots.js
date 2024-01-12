@@ -175,7 +175,25 @@ const id = req.params.spotId;
         message: "Spot couldn't be found"
       })
     }
-    return res.json(spot)
+      const numReviews = await Review.count({
+        where: { spotId: id }
+      })
+      const reviews = await Review.findAll({
+        where: { spotId: id }
+      })
+      let avg = 0
+      reviews.forEach(review => {
+        avg += review.stars
+      })
+      avg = avg / reviews.length
+      const spotList = []
+      spotList.push(spot.toJSON())
+      spotList.forEach(spot => {
+        spot.numReviews = numReviews
+        spot.avgStarRating = avg
+      })
+
+    return res.json(spotList[0])
 });
 
 //Create a Spot
@@ -386,15 +404,19 @@ if (!spotBooking) {
       attributes: ['id', 'firstName', 'lastName']
     }
   })
-  return res.json(ownerBooking)
+  return res.json({
+    Booking: ownerBooking
+  })
 }  else {
-    const userBooking = await Booking.findAll({
+    const booking = await Booking.findAll({
       where: {
         spotId: spotId
       },
       attributes: ['spotId', 'startDate', 'endDate']
     })
-    return res.json(userBooking)
+    return res.json({
+      Booking: booking
+    })
 }
 });
 

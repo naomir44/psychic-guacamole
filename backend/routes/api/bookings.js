@@ -10,13 +10,27 @@ const userId = req.user.id;
 
 const bookings = await Booking.findAll({
   where: {userId: userId},
-  include: [
+  include:
     {
-      model: Spot
+      model: Spot,
+      attributes: ["id","ownerId","address","city","state","country","lat","lng","name","price"],
+      include: { model: spotImage }
   }
-]
+
 })
-  return res.json(bookings)
+    let bookingList = []
+    bookings.forEach(booking => {
+      bookingList.push(booking.toJSON())
+    })
+    bookingList.forEach(booking => {
+        booking.Spot.spotImages.forEach(image => {
+          booking.Spot.previewImage = image.url
+        })
+        delete booking.Spot.spotImages
+    })
+  return res.json({
+   Bookings: bookingList
+  })
 
 });
 

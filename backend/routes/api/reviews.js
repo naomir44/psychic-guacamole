@@ -62,7 +62,7 @@ const numImages = await reviewImage.count({
     reviewId: reviewId
   }
 })
- if (numImages > 10) {
+ if (numImages >= 10) {
   return res.status(403).json({
     message:"Maximum number of images for this resource was reached"
   })
@@ -97,7 +97,7 @@ router.put('/:reviewId',requireAuth, validateReviews, async (req, res, next)=> {
     return res.status(404).json({
       message: "Review couldn't be found"
     })
-  } else if (review.userId !== user) {
+  } else if (findReview.userId !== user) {
     return res.status(403).json({
       message: "Forbidden"
     })
