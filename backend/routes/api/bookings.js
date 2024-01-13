@@ -36,18 +36,18 @@ const bookings = await Booking.findAll({
 
 //Edit a Booking
 router.put('/:bookingId', requireAuth, async(req, res, next)=> {
-  const bookingId = req.params.id
+  const bookingId = req.params.bookingId
   const user = req.user.id;
 
   const { startDate, endDate } = req.body;
   const today = new Date()
 
-  const booking = await Booking.findByPk(`${bookingId}`)
+  const booking = await Booking.findByPk(bookingId)
   if (!booking) {
     return res.status(404).json({
       message: "Booking couldn't be found"
     })
-  } else if (booking.id !== user) {
+  } else if (booking.userId !== user) {
     return res.status(403).json({
       message: "Forbidden"
     })
