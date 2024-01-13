@@ -47,7 +47,7 @@ const reviewId = req.params.reviewId;
 const user = req.user.id;
 const { url } = req.body;
 
-const review = await Review.findByPk(`${reviewId}`);
+const review = await Review.findByPk(reviewId);
 if(!review) {
   return res.status(404).json({
     message: "Review couldn't be found"
@@ -92,7 +92,7 @@ router.put('/:reviewId',requireAuth, validateReviews, async (req, res, next)=> {
   const { review, stars } = req.body
 
   try {
-    const findReview = await Review.findByPk(`${reviewId}`)
+    const findReview = await Review.findByPk(reviewId)
   if (!findReview) {
     return res.status(404).json({
       message: "Review couldn't be found"
@@ -122,12 +122,12 @@ router.delete('/:reviewId', requireAuth, async (req, res)=> {
 const reviewId = req.params.reviewId;
 const user = req.user.id;
 
-const deleteReview = await Review.findByPk(`${reviewId}`);
+const deleteReview = await Review.findByPk(reviewId);
 if (!deleteReview) {
   return res.status(404).json({
     message: "Review couldn't be found"
   })
-} else if (review.id !== user) {
+} else if (reviewId.id !== user) {
   return res.status(403).json({
     message: "Forbidden"
   })

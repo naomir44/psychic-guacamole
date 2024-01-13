@@ -5,16 +5,16 @@ const router = express.Router();
 
 
 
-router.delete('/:imageId', requireAuth, async (req, res, next)=> {
+router.delete('/:imageId', requireAuth, async (req, res)=> {
   const imageId = req.params.imageId;
   const user = req.user.id;
 
-  const image = await Review.findByPk(`${imageId}`)
+  const image = await Review.findByPk(imageId)
   if (!image) {
     return res.status(404).json({
       message: "Review Image couldn't be found"
      })
-  }else if (Review.id !== user) {
+  }else if (Review.imageId !== user) {
     return res.status(403).json({
       message: "Forbidden"
     })
