@@ -137,7 +137,7 @@ const booking = await Booking.findByPk(bookingId);
     return res.status(404).json({
       message: "Booking couldn't be found"
     })
-  } else if (booking.id !== user || Spot.id !== user) {
+  } else if (booking.userId !== user) {
       return res.status(403).json({
         message: "Forbidden"
       })

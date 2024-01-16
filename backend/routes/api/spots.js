@@ -52,6 +52,50 @@ const validateReviews = [
   handleValidationErrors
 ];
 
+// const validateGetAllSpots = [
+// check('page')
+//   .default(1)
+//   .isFloat({min: 1, max: 10 })
+//   .withMessage("Page must be greater than or equal to 1"),
+
+//   check('size')
+//   .default(20)
+//   .isFloat({ min:1, max: 20})
+//   .withMessage("Size must be greater than or equal to 1"),
+
+//   check('maxLat')
+//   .optional()
+//   .isDecimal()
+//   .withMessage("Maximum latitude is invalid"),
+
+//   check('minLat')
+//   .optional()
+//   .isDecimal()
+//   .withMessage("Minimum latitude is invalid"),
+
+//   check('minLng')
+//   .optional()
+//   .isDecimal()
+//   .withMessage("Maximum longitude is invalid"),
+
+//   check('maxLng')
+//   .optional()
+//   .isDecimal()
+//   .withMessage("Minimum longitude is invalid"),
+
+//   check('minPrice')
+//   .optional()
+//   .isDecimal()
+//   .isFloat({ min: 0 })
+//   .withMessage("Minimum price must be greater than or equal to 0"),
+
+//   check('maxPrice')
+//   .optional()
+//   .isDecimal()
+//   .isFloat({ min: 0 })
+//   .withMessage("Maximum price must be greater than or equal to 0")
+// ]
+
 
 
 //get all spots
@@ -306,7 +350,7 @@ if(!spot) {
   return res.status(404).json({
     message: "Spot couldn't be found"
   })
-} else if (spot.id !== user) {
+} else if (spot.ownerId !== user) {
   return res.status(403).json({
     message: "Forbidden"
   })
@@ -434,7 +478,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next)=> {
     return res.status(404).json({
       message: "Spot couldn't be found"
     })
-  } else if (spot.userId === userId) {
+  } else if (spot.ownerId === userId) {
     return res.status(403).json({
       message: "Forbidden"
     })
