@@ -52,60 +52,129 @@ const validateReviews = [
   handleValidationErrors
 ];
 
-// const validateGetAllSpots = [
-// check('page')
-//   .default(1)
-//   .isFloat({min: 1, max: 10 })
-//   .withMessage("Page must be greater than or equal to 1"),
+const validateGetAllSpots = [
+check('page')
+  .default(1)
+  .isFloat({min: 1, max: 10 })
+  .withMessage("Page must be greater than or equal to 1"),
 
-//   check('size')
-//   .default(20)
-//   .isFloat({ min:1, max: 20})
-//   .withMessage("Size must be greater than or equal to 1"),
+  check('size')
+  .default(20)
+  .isFloat({ min:1, max: 20})
+  .withMessage("Size must be greater than or equal to 1"),
 
-//   check('maxLat')
-//   .optional()
-//   .isDecimal()
-//   .withMessage("Maximum latitude is invalid"),
+  check('maxLat')
+  .optional()
+  .isDecimal()
+  .withMessage("Maximum latitude is invalid"),
 
-//   check('minLat')
-//   .optional()
-//   .isDecimal()
-//   .withMessage("Minimum latitude is invalid"),
+  check('minLat')
+  .optional()
+  .isDecimal()
+  .withMessage("Minimum latitude is invalid"),
 
-//   check('minLng')
-//   .optional()
-//   .isDecimal()
-//   .withMessage("Maximum longitude is invalid"),
+  check('minLng')
+  .optional()
+  .isDecimal()
+  .withMessage("Maximum longitude is invalid"),
 
-//   check('maxLng')
-//   .optional()
-//   .isDecimal()
-//   .withMessage("Minimum longitude is invalid"),
+  check('maxLng')
+  .optional()
+  .isDecimal()
+  .withMessage("Minimum longitude is invalid"),
 
-//   check('minPrice')
-//   .optional()
-//   .isDecimal()
-//   .isFloat({ min: 0 })
-//   .withMessage("Minimum price must be greater than or equal to 0"),
+  check('minPrice')
+  .optional()
+  .isDecimal()
+  .isFloat({ min: 0 })
+  .withMessage("Minimum price must be greater than or equal to 0"),
 
-//   check('maxPrice')
-//   .optional()
-//   .isDecimal()
-//   .isFloat({ min: 0 })
-//   .withMessage("Maximum price must be greater than or equal to 0")
-// ]
+  check('maxPrice')
+  .optional()
+  .isDecimal()
+  .isFloat({ min: 0 })
+  .withMessage("Maximum price must be greater than or equal to 0")
+]
 
 
 
 //get all spots
-router.get('/', async (req, res, next) => {
+router.get('/', validateGetAllSpots, async (req, res, next) => {
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
 try {
+      page = !page ? 1 : parseInt(page)
+      size = !size ? 20: parseInt(size)
+      const pagination = {}
+
+      if (page >= 1 && size >= 1) {
+        pagination.limit = size
+        pagination.offset = size * (page - 1)
+      }
+          page = +page
+          size = +size
+          minLat = +minLat
+          maxLat = +maxLat
+          minLng = +minLng
+          maxLng = +maxLng
+          minPrice = +minPrice
+          maxPrice = +maxPrice
+
+      const where = {}
+
+            if (minLat) {
+              where.lat = {
+                [Op.gte]: [minLat]
+              }
+            }
+            if (maxLat) {
+              where.lat = {
+                [Op.lte]: [maxLat]
+              }
+            }
+            if (minLat && maxLat) {
+              where.lat = {
+                [Op.between]: [minLat, maxLat]
+              }
+            }
+            if (minLng) {
+              where.lng = {
+                [Op.gte]: [minLng]
+              }
+            }
+            if (maxLng) {
+              where.lng = {
+                [Op.lte]: [maxLng]
+              }
+            }
+            if (minLng && maxLng) {
+              where.lng = {
+                [Op.between]: [minLng, maxLng]
+              }
+            }
+            if (minPrice) {
+              where.price = {
+                [Op.gte]: [minPrice]
+              }
+            }
+            if (maxPrice) {
+              where.price = {
+                [Op.lte]: [maxPrice]
+              }
+            }
+            if (minPrice && maxPrice) {
+              where.price = {
+                [Op.between]: [minPrice, maxPrice]
+              }
+            }
+
+
   const spots = await Spot.findAll({
   include: [
     { model: Review },
     { model: spotImage }
-  ]
+  ],
+          where,
+          ...pagination
   })
     let spotList = []
     spots.forEach(spot => {
@@ -138,7 +207,9 @@ try {
       })
 
       return res.json({
-        Spots: spotList
+        Spots: spotList,
+        page,
+        size
       })
 
 } catch(err) {
@@ -385,7 +456,9 @@ router.get('/:spotId/reviews', async (req, res, next)=> {
         attributes: ['id', 'url']
       }]
     })
-      return res.json(reviews)
+      return res.json({
+        Reviews: reviews
+      })
   }
    });
 
@@ -433,23 +506,23 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next)=> {
 const spotId = req.params.spotId;
 const userId = req.user.id;
 
-const spotBooking = await Spot.findByPk(spotId);
-if (!spotBooking) {
+const spot = await Spot.findByPk(spotId);
+if (!spot) {
   return res.status(404).json({
     message: "Spot couldn't be found"
   })
-} else if (Spot.ownerId === userId) {
+} else if (spot.ownerId === userId) {
   const ownerBooking = await Booking.findAll({
     where: {
-      userId: userId
+      spotId: spotId
     },
     include: {
-      model: 'User',
+      model: User,
       attributes: ['id', 'firstName', 'lastName']
     }
   })
   return res.json({
-    Booking: ownerBooking
+    Bookings: ownerBooking
   })
 }  else {
     const booking = await Booking.findAll({
@@ -459,7 +532,7 @@ if (!spotBooking) {
       attributes: ['spotId', 'startDate', 'endDate']
     })
     return res.json({
-      Booking: booking
+      Bookings: booking
     })
 }
 });
