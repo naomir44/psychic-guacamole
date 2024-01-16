@@ -349,7 +349,7 @@ if(!spot) {
   return res.status(404).json({
     message: "Spot couldn't be found"
   })
-} else if (spot.id !== user) {
+} else if (spot.ownerId !== user) {
   return res.status(403).json({
     message: "Forbidden"
   })
@@ -385,7 +385,7 @@ if (!spot) {
   return res.status(404).json({
     message: "Spot couldn't be found"
   })
-} else if (spot.id !== user) {
+} else if (spot.ownerId !== user) {
   return res.status(403).json({
     message: "Forbidden"
   })
