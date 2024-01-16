@@ -1,9 +1,7 @@
-# AirBnB Clone
-## Database Schema Design
+# Psychic-Guacamole
 
-![airbnb-database-schema]
+https://psychic-guacamole.onrender.com
 
-[airbnb-db-diagram-info]: https://appacademy-open-assets.s3.us-west-1.amazonaws.com/Modular-Curriculum/content/week-12/airbnb-db-diagram-info.txt
 
 ## API Documentation
 

@@ -93,7 +93,8 @@ check('page')
   .optional()
   .isDecimal()
   .isFloat({ min: 0 })
-  .withMessage("Maximum price must be greater than or equal to 0")
+  .withMessage("Maximum price must be greater than or equal to 0"),
+  handleValidationErrors
 ]
 
 
