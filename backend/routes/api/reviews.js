@@ -30,14 +30,41 @@ const userId = req.user.id;
         attributes: ['id', 'firstName', 'lastName']
       },
       {
-        model: Spot
+        model: Spot,
+        attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng","name", "price"],
+        include: [
+          {
+            model: spotImage,
+            attributes: ["preview", "url"]
+          }
+        ]
       },
       {
-        model: reviewImage
+        model: reviewImage,
+        attributes: ["id", "url"]
       }
     ]
   })
- return res.json(reviews)
+        let reviewsList = []
+        reviews.forEach(review => {
+          reviewsList.push(review.toJSON())
+        })
+          reviewsList.forEach(review => {
+            const img = review.Spot.spotImages
+            img.forEach(image => {
+              if (image.preview === true) {
+                review.Spot.previewImage = image.url
+              } else {
+                review.Spot.previewImage = "Preview Image couldn't be found"
+              }
+              delete review.Spot.spotImages
+            })
+          })
+
+
+ return res.json({
+  Reviews: reviewsList
+ })
 });
 
 
@@ -127,7 +154,7 @@ if (!deleteReview) {
   return res.status(404).json({
     message: "Review couldn't be found"
   })
-} else if (reviewId.id !== user) {
+} else if (deleteReview.userId !== user) {
   return res.status(403).json({
     message: "Forbidden"
   })
