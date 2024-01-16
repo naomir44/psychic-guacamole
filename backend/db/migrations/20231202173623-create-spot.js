@@ -26,22 +26,34 @@ module.exports = {
       }
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       state: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       country: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       lat: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.FLOAT,
+        validate: {
+          min: -90,
+          max: 90
+        }
       },
       lng: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.FLOAT,
+        validate: {
+          min: -90,
+          max: 90
+        }
       },
       name: {
         type: Sequelize.STRING,
@@ -52,7 +64,10 @@ module.exports = {
         allowNull: false
       },
       price: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.FLOAT,
+        validate: {
+          min: 0
+        }
       },
       createdAt: {
         allowNull: false,
@@ -63,12 +78,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
-        avgRating: {
-          type: Sequelize.INTEGER
-      },
-      previewImage: {
-        type: Sequelize.STRING
       }
     }, options);
   },
