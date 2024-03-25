@@ -7,27 +7,39 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
    Spot.hasMany(
     models.Review,
-    { foreignKey: 'spotId', onDelete: 'CASCADE' }
+    { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true }
    )
    Spot.hasMany(
     models.Booking,
-    { foreignKey: 'spotId', onDelete: 'CASCADE' }
+    { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true }
    )
    Spot.hasMany(
     models.spotImage,
-    { foreignKey: 'spotId', onDelete: 'CASCADE'}
+    { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true}
    )
-   Spot.belongsTo(models.User, { foreignKey: 'ownerId' })
+   Spot.belongsTo(models.User, { as: "Owner", foreignKey: 'ownerId' })
     }
   }
   Spot.init({
     ownerId: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    country: DataTypes.STRING,
-    lat: DataTypes.DECIMAL,
-    lng: DataTypes.DECIMAL,
+    address: {
+      type:  DataTypes.STRING,
+      allowNull: false
+    },
+    city: {
+      type:  DataTypes.STRING,
+      allowNull: false
+    },
+    state: {
+      type:  DataTypes.STRING,
+      allowNull: false
+    },
+    country:{
+      type:  DataTypes.STRING,
+      allowNull: false
+    },
+    lat: DataTypes.FLOAT,
+    lng: DataTypes.FLOAT,
     name:{
       type: DataTypes.STRING,
       allowNull: false
@@ -36,9 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    price: DataTypes.DECIMAL,
-    avgRating: DataTypes.INTEGER,
-    previewImage: DataTypes.STRING
+    price: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'Spot',
