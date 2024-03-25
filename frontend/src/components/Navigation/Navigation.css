@@ -21,11 +21,14 @@
 .pro-button {
   cursor: pointer;
 }
-.home {
+.home{
   padding: 10px;
   text-decoration: none;
   color: salmon;
   cursor: pointer;
+}
+.home-button{
+  background-color: salmon;
 }
 
 .profile-button {

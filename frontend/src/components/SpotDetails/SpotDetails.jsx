@@ -50,17 +50,17 @@ reviewList.forEach((currReview) => {
               <img className="img" key={spot.id} src={img.url}></img>
             ))}
             <div>{`Hosted By ${spot.Owner.firstName} ${spot.Owner.lastName}`}</div>
-            <p>{spot.description}</p>
+            <p className="spot-description">{spot.description}</p>
             <div className="reserve-box">
               <span>${spot.price} night </span>
-              <span>⭐️{spot.avgStarRating} </span>
-              <span>{spot.numReviews} review</span>
+              <span> ⭐️{spot.avgStarRating ? parseInt(spot.avgStarRating).toFixed(1) : "New"}</span>
+            <span> · {spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}</span>
               <button className="reserve-button" onClick={handleClick}>Reserve</button>
             </div>
             <div className="reviews">
               <div className="review-modal">
               <span
-              hidden={!session || spot.Owner.id === session.id || userHasReview}
+              hidden={!session || spot.Owner.id === session.id || !userHasReview}
               >
                 <OpenModalButton
                 buttonText = "Post Your Review"
@@ -72,6 +72,8 @@ reviewList.forEach((currReview) => {
                 Be the first to post a review!
                 </span>
                 <div className="review-data">
+                <span> ⭐️{spot.avgStarRating ? parseInt(spot.avgStarRating).toFixed(1) : "New"}</span>
+            <span> · {spot.numReviews} {spot.numReviews === 1 ? 'Review' : 'Reviews'}</span>
                 { review && review.map((review, index) => (
                   <div key={index}>
                     <p>{review.User.firstName}</p>

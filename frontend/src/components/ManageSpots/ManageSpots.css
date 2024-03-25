@@ -1,0 +1,87 @@
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Header style */
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Main container for the spots */
+.manage-spots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Individual spot link and container */
+.spot-link {
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 20px;
+}
+
+.spot-container {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+}
+
+/* Style for the spot image */
+.spot-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Details about the spot */
+.spot-details {
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Spot location, price, and rating */
+.spot-location,
+.spot-price,
+.spot-rating {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Rating with star icon */
+.spot-rating {
+  color: #ffd700; /* Gold color for the star rating */
+}
+
+/* Buttons for update and delete */
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  background-color: gray;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Button hover effects */
+button:hover {
+  background-color: gray;
+}
+
+/* Link for updating the spot */
+NavLink {
+  color:  gray;
+  text-decoration: none;
+  font-size: 14px;
+}

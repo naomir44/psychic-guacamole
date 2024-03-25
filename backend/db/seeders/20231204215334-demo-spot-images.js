@@ -14,19 +14,54 @@ module.exports = {
     [
       {
         spotId: 1,
-        url: '/images/abqhouse.jpeg',
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/abq-house+pool.jpeg',
+        preview: true
+      },
+      {
+        spotId: 1,
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/abqhouse2.jpeg',
+        preview: false
+      },
+      {
+        spotId: 1,
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/abqhouse3.jpeg',
+        preview: false
+      },
+      {
+        spotId: 2,
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/alien-house.jpg',
         preview: true
       },
       {
         spotId: 2,
-        url: '/images/alien-house.jpg',
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/alien-house2.webp',
+        preview: false
+      },
+      {
+        spotId: 2,
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/alienhouse3.jpeg',
+        preview: false
+      },
+      {
+        spotId: 3,
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/carshouse.jpeg',
         preview: true
       },
       {
         spotId: 3,
-        url: 'images/carhouse.jpeg',
-        preview: true
-      }
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/carhouse2.jpeg',
+        preview: false
+      },
+      // {
+      //   spotId: 4,
+      //   url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/images-cancun.jpeg',
+      //   preview: true
+      // },
+      // {
+      //   spotId: 4,
+      //   url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/cancun.jpeg',
+      //   preview: false
+      // }
     ], { validate: true });
   },
 
@@ -34,7 +69,7 @@ module.exports = {
     options.tableName = 'spotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['abqhouse.jpeg', 'alien-house.jpg', 'carhouse.jpeg'] }
+      url: { [Op.in]: ['https://pyschguacbucket.s3.us-west-1.amazonaws.com/abq-house+pool.jpeg', 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/alien-house.jpg', 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/carshouse.jpeg'] }
     }, {});
   }
 };

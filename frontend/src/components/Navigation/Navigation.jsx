@@ -10,7 +10,14 @@ function Navigation({ isLoaded }) {
     <nav>
     <div className="nav-container">
       <div className="home">
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">
+          <button className='home-button'>Home</button>
+        </NavLink>
+      </div>
+      <div hidden={!sessionUser}>
+        <NavLink to='/spots/new'>
+          <button>Create New Spot</button>
+        </NavLink>
       </div>
       {isLoaded && (
         <div className="profile-button">

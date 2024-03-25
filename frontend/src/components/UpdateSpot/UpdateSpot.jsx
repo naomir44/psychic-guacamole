@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEditSpot, fetchOneSpot } from "../../store/spots";
 import { useNavigate, useParams } from 'react-router-dom';
+ import './UpdateSpot.css';
 
 
 const UpdateSpot = () => {
@@ -84,7 +85,7 @@ return (
     <>
 
     <h1>Update your Spot</h1>
-    <h2>Where's your place located?</h2>
+    <h2>Where&apos;s your place located?</h2>
     <p>
       Guests will only get your exact address once they booked a
       reservation.
@@ -151,7 +152,7 @@ return (
       />
       {errors.description && <p>{errors.description}</p>}
       <h2>Create a name for your spot</h2>
-      <p>Catch guests' attention with a spot name that highlights what makes
+      <p>Catch guest&apos;s attention with a spot name that highlights what makes
         your place special.</p>
 
       <input type="text"

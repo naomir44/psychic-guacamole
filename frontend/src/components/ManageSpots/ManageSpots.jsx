@@ -5,6 +5,7 @@ import { fetchCurrSpots } from "../../store/spots";
 import { NavLink } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSpot from "../DeleteSpot/DeleteSpotModal";
+import './ManageSpots.css';
 
 
 const ManageSpots = () => {

@@ -1,9 +1,9 @@
 import { csrfFetch } from "./csrf";
 
 
-const GET_SPOT_REVIEWS = 'reviews/getSpotReviews';
-const CREATE_REVIEW = 'reviews/createReview';
-const DELETE_REVIEW = 'reviews/deleteReview';
+const GET_SPOT_REVIEWS = 'reviews/GET_SPOT_REVIEWS';
+const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
+const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 const deleteRev = (review) => {
   return {

@@ -19,6 +19,8 @@ const user = useSelector(state => state.session.user)
 // const [starRating, setStarRating] = useState('');
 const [errors, setErrors] = useState('');
 
+const disabled = newReview.length < 10 || currSelection === 0;
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 if (user) setFirstName(user.firstName)
@@ -58,8 +60,9 @@ return (
           <FaStar />
           </div>
       })}
+      Stars
      </div>
-      <button type="submit">Submit Your Review</button>
+      <button disabled={disabled} type="submit">Submit Your Review</button>
       <button type="button" onClick={closeModal}>Cancel</button>
     </form>
   </div>
