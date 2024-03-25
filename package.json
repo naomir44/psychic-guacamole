@@ -1,0 +1,24 @@
+{
+  "name": "psychic-guacamole",
+  "version": "1.0.0",
+  "description": "https://psychic-guacamole.onrender.com",
+  "main": "index.js",
+  "dependencies": {
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "react": "^18.2.0",
+    "react-icons": "^5.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend",
+    "build": "npm run --prefix backend build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
