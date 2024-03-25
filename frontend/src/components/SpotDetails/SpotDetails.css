@@ -1,0 +1,77 @@
+main {
+  font-family: Arial, sans-serif;
+}
+
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+div {
+  margin-bottom: 8px;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.reserve-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #000;
+  padding: 16px;
+  width: fit-content;
+}
+
+.reserve-box span, .reserve-box button {
+  margin-bottom: 8px;
+}
+
+.reserve-button {
+  background-color: salmon;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.reserve-button:hover {
+  background-color: #333;
+}
+
+.reviews {
+  margin-top: 16px;
+}
+
+.date {
+  font-style: italic;
+  color: #666;
+}
+
+.review {
+  margin-top: 4px;
+}
+
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.star-rating::before {
+  content: '⭐️';
+  font-size: 20px;
+}

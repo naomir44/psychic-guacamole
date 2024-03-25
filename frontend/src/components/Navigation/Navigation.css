@@ -1,0 +1,36 @@
+.hidden {
+  display: none;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-dropdown li {
+  cursor: pointer;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: solid gray;
+
+}
+.pro-button {
+  cursor: pointer;
+}
+.home {
+  padding: 10px;
+  text-decoration: none;
+  color: salmon;
+  cursor: pointer;
+}
+
+.profile-button {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}

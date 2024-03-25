@@ -1,0 +1,38 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.spot-link {
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+}
+
+.spot-container {
+height: 300px;
+width: 600px;
+}
+
+.spot-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.spot-details {
+  padding: 20px 0;
+}
+
+.spot-location,
+.spot-price,
+.spot-rating {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9em;
+}

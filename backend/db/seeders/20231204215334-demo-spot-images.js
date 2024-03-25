@@ -14,17 +14,17 @@ module.exports = {
     [
       {
         spotId: 1,
-        url: 'https://amount.example.jpg/',
+        url: '/images/abqhouse.jpeg',
         preview: true
       },
       {
         spotId: 2,
-        url: 'https://amount.picture.jpg/',
+        url: '/images/alien-house.jpg',
         preview: true
       },
       {
         spotId: 3,
-        url: 'https://picture.example.org/',
+        url: 'images/carhouse.jpeg',
         preview: true
       }
     ], { validate: true });
@@ -34,7 +34,7 @@ module.exports = {
     options.tableName = 'spotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['https://amount.example.jpg/', 'https://amount.picture.jpg/', 'https://picture.example.org/'] }
+      url: { [Op.in]: ['abqhouse.jpeg', 'alien-house.jpg', 'carhouse.jpeg'] }
     }, {});
   }
 };

@@ -3,8 +3,13 @@ import { useDispatch } from 'react-redux';
 import { Outlet, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
-import LoginFormModal from './components/LoginFormModal/LoginFormModal';
-import SignupFormModal from './components/SignupFormModal/SignupFormModal';
+// import LoginFormModal from './components/LoginFormModal/LoginFormModal';
+// import SignupFormModal from './components/SignupFormModal/SignupFormModal';
+import LandingPage from './components/LandingPage';
+import SpotDetails from './components/SpotDetails/SpotDetails';
+import CreateNewSpot from './components/CreateNewSpot';
+import ManageSpots from './components/ManageSpots/ManageSpots';
+import UpdateSpot from './components/UpdateSpot/UpdateSpot';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -30,15 +35,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <LandingPage />
       },
       {
-        path: "login",
-        element: <LoginFormModal />
+        path: '/spots/:spotId',
+        element: <SpotDetails />
       },
       {
-        path: "signup",
-        element: <SignupFormModal />
+        path: '/spots/new',
+        element: <CreateNewSpot />
+      },
+      {
+        path: '/spots/current',
+        element: <ManageSpots />
+      },
+      {
+        path: '/spots/:spotId/edit',
+        element: <UpdateSpot />
       }
     ]
   }
