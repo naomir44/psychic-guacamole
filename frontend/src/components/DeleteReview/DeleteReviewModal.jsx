@@ -4,7 +4,7 @@ import { useState } from "react";
 import { deleteCurrReview } from "../../store/reviews";
 
 
-const deleteReview = ( {reviewId} ) => {
+const DeleteReview = ( {reviewId} ) => {
   const { closeModal } = useModal();
 const dispatch = useDispatch();
 const [errors, setErrors] = useState({})
@@ -38,4 +38,4 @@ const handleClick = (e) => {
     )
 }
 
-export default deleteReview;
+export default DeleteReview;

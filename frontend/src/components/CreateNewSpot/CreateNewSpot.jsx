@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSpot } from "../../store/spots";
 import { useNavigate } from 'react-router-dom';
@@ -74,7 +74,7 @@ const CreateNewSpot = () => {
 return (
   <>
     <h1>Create a new spot</h1>
-    <h2>Where's your place located?</h2>
+    <h2>Where&apos;s your place located?</h2>
     <p>
       Guests will only get your exact address once they booked a
       reservation.
@@ -141,7 +141,7 @@ return (
       />
       {errors.description && <p>{errors.description}</p>}
       <h2>Create a name for your spot</h2>
-      <p>Catch guests' attention with a spot name that highlights what makes
+      <p>Catch guests&apos; attention with a spot name that highlights what makes
         your place special.</p>
 
       <input type="text"

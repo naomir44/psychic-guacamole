@@ -1,3 +1,3 @@
-import deleteReview from "./DeleteReviewModal";
+import DeleteReview from "./DeleteReviewModal";
 
-export default deleteReview;
+export default DeleteReview;

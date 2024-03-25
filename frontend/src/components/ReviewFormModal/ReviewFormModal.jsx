@@ -14,12 +14,14 @@ const [currSelection, setCurrSelection] = useState(0)
 const [hover, setHover] = useState(0)
 const [reviewText, setReviewText] = useState('');
 const [firstName, setFirstName ] = useState('');
+firstName
+errors
 const user = useSelector(state => state.session.user)
 
 // const [starRating, setStarRating] = useState('');
 const [errors, setErrors] = useState('');
 
-const disabled = newReview.length < 10 || currSelection === 0;
+
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -39,6 +41,8 @@ let newReview = {
  })
   closeModal()
 }
+
+const disabled = reviewText.length < 10 || currSelection === 0;
 
 
 return (
