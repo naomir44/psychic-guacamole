@@ -45,7 +45,7 @@ module.exports = {
         lat: 32.487370474635,
         lng: -9.8544921875,
         name: 'Lux',
-        description: 'Nestled in the vibrant heart of Los Angeles, this stunning modern home offers a blend of luxury and contemporary design. The exterior is characterized by sleek, clean lines and large glass panels that flood the interior with natural light, accentuating the open-plan layout. The facade is complemented by a harmonious mix of concrete, wood, and steel elements, creating a visually striking appearance.',
+        description: 'Nestled in the vibrant heart of Los Angeles, this stunning modern home offers a blend of luxury and contemporary design. The exterior is characterized by sleek, clean lines and large glass panels that flood the interior with natural light, accentuating the open-plan layout.',
         price: '350.00'
       },
       {
@@ -69,7 +69,7 @@ module.exports = {
         lat: 45.4873,
         lng: 10.8544921875,
         name: "Beach House",
-        description: "The house is located in the enclave of Llandudno Beach, a locals-only spot with unspoilt, fine white sand and curling surfing waves. Although shops and restaurants are only a five-minute drive away, the area feels peaceful and secluded.",
+        description: "The house is located in the enclave of Llandudno Beach, a locals-only spot with unspoilt, fine white sand and curling surfing waves.",
         price: "100.00"
       },
       {
@@ -81,7 +81,7 @@ module.exports = {
         lat: 32.487370474635,
         lng: -9.8544921875,
         name: 'Cabin In The Woods',
-        description: 'Pretend you are lost in a magical forest as you perch on a log or curl up in the swinging chair. Soak in the tub, then fall asleep in a heavenly bedroom with cloud-painted walls and twinkling lights. And when you wake up, the espresso machine awaits.',
+        description: 'Pretend you are lost in a magical forest as you perch on a log or curl up in the swinging chair. Soak in the tub, then fall asleep in a heavenly bedroom with cloud-painted walls and twinkling lights.',
         price: '168.00'
       }
     ], { validate: true });
