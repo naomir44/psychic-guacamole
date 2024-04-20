@@ -7,27 +7,22 @@ import './ReviewFormModal.css';
 
 const ReviewFormModal = ({spotId}) => {
 const dispatch = useDispatch();
-// const { spotId } = useParams();
 const { closeModal } = useModal()
 let selectStar = [1, 2, 3, 4, 5]
 const [currSelection, setCurrSelection] = useState(0)
 const [hover, setHover] = useState(0)
 const [reviewText, setReviewText] = useState('');
 const [firstName, setFirstName ] = useState('');
-spotId = +spotId
-// firstName
-// errors
-const user = useSelector(state => state.session.user)
-
-// const [starRating, setStarRating] = useState('');
 const [errors, setErrors] = useState('');
-
-
+spotId = +spotId
+errors
+const user = useSelector(state => state.session.user)
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 if (user) setFirstName(user.firstName)
 let newReview = {
+  User: { firstName: firstName },
   spotId: spotId,
   userId: user.id,
   review: reviewText,
@@ -50,7 +45,6 @@ return (
   <div className="review-modal-itself">
     <form onSubmit={handleSubmit}>
       <h2>How was your stay?</h2>
-      {/* {error && <div style={{ color: 'red' }}>{error}</div>} */}
       <textarea className="review-text-box"
         placeholder="Leave your review here..."
         value={reviewText}

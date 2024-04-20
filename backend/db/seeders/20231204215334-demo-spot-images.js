@@ -14,7 +14,7 @@ module.exports = {
     [
       {
         spotId: 1,
-        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/abq-house+pool.jpeg',
+        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/house-with-pool.jpeg',
         preview: true
       },
       {
@@ -44,12 +44,17 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/carshouse.jpeg',
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/car-house.jpeg",
         preview: true
       },
       {
         spotId: 3,
-        url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/carhouse2.jpeg',
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/car-house-2.jpeg",
+        preview: false
+      },
+      {
+        spotId: 3,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/car-house-3.jpeg",
         preview: false
       },
       {
@@ -105,7 +110,7 @@ module.exports = {
     options.tableName = 'spotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['https://pyschguacbucket.s3.us-west-1.amazonaws.com/abq-house+pool.jpeg', 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/alien-house.jpg', 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/carshouse.jpeg'] }
+      url: { [Op.in]: ["https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/house-with-pool.jpeg", 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/alien-house.jpg', "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/car-house.jpeg"] }
     }, {});
   }
 };

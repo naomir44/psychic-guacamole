@@ -39,14 +39,14 @@ module.exports = {
       {
         ownerId: 3,
         address: '954 N Peach rd',
-        city: 'Tucumcari',
-        state: 'New Mexico',
+        city: 'Los Angeles',
+        state: 'California',
         country: 'United States of America',
         lat: 32.487370474635,
         lng: -9.8544921875,
-        name: 'Route 66',
-        description: 'Based on the Cars movie and Route 66',
-        price: '150.00'
+        name: 'Lux',
+        description: 'Nestled in the vibrant heart of Los Angeles, this stunning modern home offers a blend of luxury and contemporary design. The exterior is characterized by sleek, clean lines and large glass panels that flood the interior with natural light, accentuating the open-plan layout. The facade is complemented by a harmonious mix of concrete, wood, and steel elements, creating a visually striking appearance.',
+        price: '350.00'
       },
       {
         ownerId: 1,

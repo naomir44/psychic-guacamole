@@ -24,10 +24,12 @@ const LandingPage = () => {
             <div className="spot-container">
               <img src={spot.previewImage} alt={`${spot.name}`} className="spot-image" />
               <div className="spot-details">
+                <div className="spot-info">
                 <div className="spot-location">
                 <span>{`${spot.city}, ${spot.state}`}</span>
                 </div>
                 <span className="spot-rating">{spot.avgRating ? `⭐️ ${parseInt(spot.avgRating).toFixed(1)}` : 'New'}</span>
+                </div>
                 <span className="spot-price">{`$${spot.price} night`}</span>
               </div>
             </div>
