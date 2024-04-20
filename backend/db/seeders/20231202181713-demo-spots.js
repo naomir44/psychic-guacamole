@@ -45,7 +45,7 @@ module.exports = {
         lat: 32.487370474635,
         lng: -9.8544921875,
         name: 'Lux',
-        description: 'Nestled in the vibrant heart of Los Angeles, this stunning modern home offers a blend of luxury and contemporary design. The exterior is characterized by sleek, clean lines and large glass panels that flood the interior with natural light, accentuating the open-plan layout.',
+        description: 'Nestled in the vibrant heart of Los Angeles, this stunning modern home offers a blend of luxury and contemporary design.',
         price: '350.00'
       },
       {
@@ -57,7 +57,7 @@ module.exports = {
         lat: 45.4873,
         lng: 10.8544921875,
         name: 'Tiny Cabin',
-        description: "Spending vacation in this tiny cabin on wheels might be a dream for many. The 400 square foot cabin has all the features of a modern recreational vehicle. Rent The Wedge and get inspired before building one." ,
+        description: "Spending vacation in this tiny cabin on wheels might be a dream for many." ,
         price: '125.00'
       },
       {
@@ -81,7 +81,7 @@ module.exports = {
         lat: 32.487370474635,
         lng: -9.8544921875,
         name: 'Cabin In The Woods',
-        description: 'Pretend you are lost in a magical forest as you perch on a log or curl up in the swinging chair. Soak in the tub, then fall asleep in a heavenly bedroom with cloud-painted walls and twinkling lights.',
+        description: 'Pretend you are lost in a magical forest as you perch on a log or curl up in the swinging chair. Soak in the tub.',
         price: '168.00'
       }
     ], { validate: true });
