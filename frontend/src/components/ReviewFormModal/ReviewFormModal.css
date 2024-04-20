@@ -37,7 +37,7 @@
 .star-rating-filled-stars .empty {
   font-size: 24px;
   cursor: pointer;
-  color: #333;
+  color: gold;
 }
 
 .star-rating-filled-stars .empty {
@@ -53,7 +53,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Style for submit button */
 .review-modal-itself button[type="submit"] {
   background-color: #d9534f;
   color: white;
@@ -61,7 +60,6 @@
   margin-bottom: 10px;
 }
 
-/* Style for cancel button */
 .review-modal-itself button[type="button"] {
   background-color: #f0f0f0;
   color: #333;

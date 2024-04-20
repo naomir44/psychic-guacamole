@@ -1,80 +1,105 @@
+
 main {
   font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: auto;
+
+}
+.right-column {
+  margin-left: 950px;
 }
 
-
 h1 {
-  font-size: 24px;
-  margin-bottom: 8px;
+  font-size: 28px;
+  margin-bottom: 16px;
+  color: #333;
 }
 
 div {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .images {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 8px;
-  margin-bottom: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .img {
+  display: block;
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 200px;
+  border-radius: 8px;
 }
-
+.spot-description {
+  display: inline;
+}
 .reserve-box {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  border: 1px solid #000;
+  align-items: center;
+  border: 1px solid black;
   padding: 10px;
-  width: fit-content;
-  height: fit-content;
-}
-
-.reserve-box span, .reserve-box button {
-  margin-bottom: 8px;
+  width: 145px;
+  height: max-content;
+  margin-top: 16px;
+  background-color: #F9F9F9;
+  position: relative;
+  margin-left: 20px;
+  border-radius: 10%;
+  /* font-weight: bold; */
 }
 
 .reserve-button {
-  background-color: salmon;
+  background-color: #FF5A5F;
   color: #fff;
   border: none;
-  padding: 8px 16px;
+  padding: 12px 24px;
+  font-size: 16px;
   cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 12px;
 }
 
 .reserve-button:hover {
-  background-color: #333;
+  background-color: #E53E3E;
 }
 
-.reviews {
-  margin-bottom: 16px;
-}
-.spot-description {
-  margin-bottom: 16px;
-}
-.date {
-  font-style: italic;
-  color: #666;
+.review-data {
+  border-top: 2px solid black;
 }
 
 .review {
-  margin-top: 4px;
+  margin-bottom: 12px;
+  border-top: #333;
 }
 
+.actual-review {
+  font-weight: bold;
+}
 
 .star-rating {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  font-size: 24px;
+  color: #FFD700;
+}
+
+.date {
+  font-style: italic;
+  color: #666;
   margin-bottom: 4px;
 }
 
-.star-rating::before {
-  content: '⭐️';
-  font-size: 20px;
+p text{
+  margin-bottom: 4px;
+}
+
+.review-container {
+  border: 1px solid #ECECEC;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  position: relative;
+  background-color: #F9F9F9;
 }

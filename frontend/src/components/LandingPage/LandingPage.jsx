@@ -20,13 +20,15 @@ const LandingPage = () => {
     <>
       <main className="landing-page">
         {spots.map((spot) => (
-          <NavLink key={spot.name} to={`spots/${spot.id}`} className="spot-link" title={spot.name}>
+          <NavLink key={spot.name} to={`spots/${spot.id}`} title={spot.name}>
             <div className="spot-container">
               <img src={spot.previewImage} alt={`${spot.name}`} className="spot-image" />
               <div className="spot-details">
-                <span className="spot-location">{`${spot.city}, ${spot.state}`}</span>
-                <span className="spot-price">{`$${spot.price} night`}</span>
+                <div className="spot-location">
+                <span>{`${spot.city}, ${spot.state}`}</span>
+                </div>
                 <span className="spot-rating">{spot.avgRating ? `⭐️ ${parseInt(spot.avgRating).toFixed(1)}` : 'New'}</span>
+                <span className="spot-price">{`$${spot.price} night`}</span>
               </div>
             </div>
           </NavLink>

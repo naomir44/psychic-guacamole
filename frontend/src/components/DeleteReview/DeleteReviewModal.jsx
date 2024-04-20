@@ -2,17 +2,19 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useState } from "react";
 import { deleteCurrReview } from "../../store/reviews";
+import './DeleteReviewModal.css';
 
 
-const DeleteReview = ( {reviewId} ) => {
+const DeleteReview = ( {reviewId, spotId} ) => {
   const { closeModal } = useModal();
 const dispatch = useDispatch();
 const [errors, setErrors] = useState({})
+spotId = +spotId
 
 const handleClick = (e) => {
   e.preventDefault()
   setErrors({})
-  dispatch(deleteCurrReview(reviewId))
+  dispatch(deleteCurrReview(reviewId, spotId))
     .then(closeModal)
     .catch(async (res) => {
       let data = await res.json()

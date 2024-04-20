@@ -9,14 +9,13 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
     <div className="nav-container">
-      <div className="home">
         <NavLink to="/">
-          <button className='home-button'>Home</button>
+          <img className='home-img'src="https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/pngtree-hand-holding-house-comic-icon-for-home-care-vector-png-image_12860743.png"/>
         </NavLink>
-      </div>
-      <div hidden={!sessionUser}>
+        <div className='app-name'>Anywhere Home</div>
+      <div className="create-new-spot-container">
         <NavLink to='/spots/new'>
-          <button>Create New Spot</button>
+          <button hidden={!sessionUser} className='create-new-spot'>Create New Spot</button>
         </NavLink>
       </div>
       {isLoaded && (

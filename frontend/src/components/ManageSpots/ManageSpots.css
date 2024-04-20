@@ -1,68 +1,82 @@
-/* Global styles */
+
 body {
   font-family: 'Arial', sans-serif;
 }
-
-/* Header style */
 h1 {
   text-align: center;
-  color: #333;
+  color: #FF5A5F;
 }
 
-/* Main container for the spots */
 .manage-spots {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 40px;
   padding: 20px;
+  justify-content: center;
 }
 
-/* Individual spot link and container */
+/* .spot {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+} */
+
+
 .spot-link {
   text-decoration: none;
   color: inherit;
-  margin-bottom: 20px;
+  display: block;
 }
 
 .spot-container {
   display: flex;
+  flex-direction: column;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
-  max-width: 600px; /* Adjust as needed */
+  max-width: 800px;
+  position: relative;
 }
 
-/* Style for the spot image */
+
 .spot-image {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: auto;
   object-fit: cover;
+  margin-top: 20px;
 }
 
-/* Details about the spot */
 .spot-details {
-  padding: 10px;
-  flex-grow: 1;
+  padding: 5px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 
-/* Spot location, price, and rating */
+.spot-location {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spot-actions {
+display: flex;
+justify-content: space-around;
+}
+
+
 .spot-location,
-.spot-price,
-.spot-rating {
-  font-size: 14px;
-  color: #666;
+.spot-price {
+  color: black;
 }
 
-/* Rating with star icon */
+
 .spot-rating {
-  color: #ffd700; /* Gold color for the star rating */
+  color: #ffd700;
+  /* margin-left: auto; */
+  font-size: 15px;
 }
 
-/* Buttons for update and delete */
 button {
   padding: 10px 20px;
   margin: 10px;
@@ -74,14 +88,13 @@ button {
   font-weight: bold;
 }
 
-/* Button hover effects */
+
 button:hover {
-  background-color: gray;
+  background-color: lightgray;
 }
 
-/* Link for updating the spot */
-NavLink {
-  color:  gray;
-  text-decoration: none;
-  font-size: 14px;
+@media (max-width: 1024px) {
+  .manage-spots {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

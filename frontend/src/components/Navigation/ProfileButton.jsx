@@ -7,13 +7,14 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { Link } from 'react-router-dom';
 
+
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -39,7 +40,9 @@ function ProfileButton({ user }) {
     closeMenu();
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  // const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = `profile-dropdown ${showMenu ? "show-menu" : ""}`;
+
 
   return (
     <>
@@ -55,6 +58,11 @@ function ProfileButton({ user }) {
             <li>
               <Link to= '/spots/current'>
               <button>Manage Spots</button>
+              </Link>
+            </li>
+            <li>
+              <Link to= '/reviews/current' >
+                <button>Manage Reviews</button>
               </Link>
             </li>
             <li>

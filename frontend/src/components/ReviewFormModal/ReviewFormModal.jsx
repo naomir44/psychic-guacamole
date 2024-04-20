@@ -14,8 +14,9 @@ const [currSelection, setCurrSelection] = useState(0)
 const [hover, setHover] = useState(0)
 const [reviewText, setReviewText] = useState('');
 const [firstName, setFirstName ] = useState('');
-firstName
-errors
+spotId = +spotId
+// firstName
+// errors
 const user = useSelector(state => state.session.user)
 
 // const [starRating, setStarRating] = useState('');
@@ -34,7 +35,7 @@ let newReview = {
 
 }
 
- await dispatch(fetchCreateReview(spotId, newReview))
+ await dispatch(fetchCreateReview(spotId, newReview, user))
  .catch(async (response) => {
   let data = await response.json()
   if (data && data.errors) setErrors(data.errors)
