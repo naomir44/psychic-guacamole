@@ -7,20 +7,16 @@
   border-radius: 8px;
 }
 
-/* Style for headers */
 h1, h2 {
   color: #333;
   margin-bottom: 10px;
 }
-
-/* Style for paragraph text */
 p {
   color: #666;
   font-size: 14px;
   margin-bottom: 20px;
 }
 
-/* Style for form inputs */
 .update-spot-form input[type="text"] {
   width: 100%;
   padding: 8px;
@@ -28,8 +24,6 @@ p {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-/* Style for labels */
 .update-spot-form label {
   display: block;
   color: #000;
@@ -37,13 +31,11 @@ p {
   margin-bottom: 5px;
 }
 
-/* Error messages */
 .update-spot-form p {
   color: red;
   font-size: 12px;
 }
 
-/* Submit button */
 .update-spot-form button {
   width: 100%;
   padding: 10px;
