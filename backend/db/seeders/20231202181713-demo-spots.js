@@ -47,6 +47,42 @@ module.exports = {
         name: 'Route 66',
         description: 'Based on the Cars movie and Route 66',
         price: '150.00'
+      },
+      {
+        ownerId: 1,
+        address: '1245 Little Bear rd',
+        city: 'Colorado Springs',
+        state: 'Colorado',
+        country: 'United States of America',
+        lat: 45.4873,
+        lng: 10.8544921875,
+        name: 'Tiny Cabin',
+        description: "Spending vacation in this tiny cabin on wheels might be a dream for many. The 400 square foot cabin has all the features of a modern recreational vehicle. Rent The Wedge and get inspired before building one." ,
+        price: '125.00'
+      },
+      {
+        ownerId: 2,
+        address: "5678 Malibu dr",
+        city: "Florida Keys",
+        state: "Florida",
+        country: 'United States of America',
+        lat: 45.4873,
+        lng: 10.8544921875,
+        name: "Beach House",
+        description: "The house is located in the enclave of Llandudno Beach, a locals-only spot with unspoilt, fine white sand and curling surfing waves. Although shops and restaurants are only a five-minute drive away, the area feels peaceful and secluded.",
+        price: "100.00"
+      },
+      {
+        ownerId: 3,
+        address: '8910 Mountain Way Rd',
+        city: 'Pocatello',
+        state: 'Idaho',
+        country: 'United States of America',
+        lat: 32.487370474635,
+        lng: -9.8544921875,
+        name: 'Cabin In The Woods',
+        description: 'Pretend you are lost in a magical forest as you perch on a log or curl up in the swinging chair. Soak in the tub, then fall asleep in a heavenly bedroom with cloud-painted walls and twinkling lights. And when you wake up, the espresso machine awaits.',
+        price: '168.00'
       }
     ], { validate: true });
   },
@@ -55,7 +91,7 @@ module.exports = {
   options.tableName = 'Spots';
   const Op = Sequelize.Op;
 return queryInterface.bulkDelete(options, {
-name: { [Op.in]: ['Abq House', 'Alien Themed House', 'Route 66'] }
+name: { [Op.in]: ['Abq House', 'Alien Themed House', 'Route 66', 'Tiny Cabin', 'Beach House', 'Cabin In The Woods'] }
 }, {});
   }
 };

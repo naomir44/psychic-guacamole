@@ -52,16 +52,52 @@ module.exports = {
         url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/carhouse2.jpeg',
         preview: false
       },
-      // {
-      //   spotId: 4,
-      //   url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/images-cancun.jpeg',
-      //   preview: true
-      // },
-      // {
-      //   spotId: 4,
-      //   url: 'https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/cancun.jpeg',
-      //   preview: false
-      // }
+      {
+        spotId: 4,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/tiny-cabin-house.jpeg",
+        preview: true
+      },
+      {
+        spotId: 4,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/another-tiny-cabin.jpeg",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/tiny-house-3.webp",
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/beach-house-1.jpeg",
+        preview: true
+      },
+      {
+        spotId: 5,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/beach-house-2.jpeg",
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/beach-house-3.jpeg",
+        preview: false
+      },
+      {
+        spotId: 6,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/big-cabin-1.jpeg",
+        preview: true
+      },
+      {
+        spotId: 6,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/big-cabin-2.jpeg",
+        preview: false
+      },
+      {
+        spotId: 6,
+        url: "https://pyschguacbucket.s3.us-west-1.amazonaws.com/images/big-cabin-3.jpeg",
+        preview: false
+      }
+
     ], { validate: true });
   },
 
