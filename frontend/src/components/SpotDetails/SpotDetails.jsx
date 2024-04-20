@@ -38,7 +38,7 @@ const SpotDetails = () => {
       {isLoaded &&
         <main >
           <div className="left-column">
-          <h1>{spot.name}</h1>
+          <h1 className="title">{spot.name}</h1>
           <div>{spot.city}, {spot.state}, {spot.country}</div>
 
           <div className="images">

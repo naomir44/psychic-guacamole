@@ -102,16 +102,3 @@ align-items: center;
 .profile-dropdown.show-menu {
   display: block;
 }
-
-
- /* .pro-button {
-  background-color: #FF5A5F;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-}
-
-.pro-button:hover {
-  background-color: #E53E3E;
-} */

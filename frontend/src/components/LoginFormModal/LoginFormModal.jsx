@@ -12,7 +12,10 @@ function LoginFormModal() {
   const { closeModal } = useModal();
 
   const isValid = () => {
-    return credential.length >= 4 && password.length >= 6
+    return (
+      credential.length >= 4 &&
+      password.length >= 6
+    )
   }
 
   const handleSubmit = (e) => {
@@ -21,20 +24,18 @@ function LoginFormModal() {
 
     return dispatch(sessionActions.login({ credential, password }))
       .then(() => {
-        closeModal()
+        closeModal();
       })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
           setErrors(data.errors);
+        } else {
+          setErrors(['The provided credentials were invalid.']);
         }
-      })
-      .catch(async (res) => {
-        if(!res.ok) {
-          setErrors(['The provided credentials were invalid']);
-        }
-      })
+      });
   };
+
 
   const handleDemoUser = (e) => {
     e.preventDefault();
@@ -63,6 +64,7 @@ function LoginFormModal() {
             required
           />
         </label>
+
         <label>
           Password
           <input
@@ -72,9 +74,15 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
+        <div>
+          {errors.length > 0 && (
+            <div>
+              {errors.map((error, idx) => (
+                <p key={idx} className='error-text'>{error}</p>
+              ))}
+            </div>
+          )}
+        </div>
         <button type="submit" disabled={!isValid()}>Log In</button>
         <button className='demo-user' onClick={handleDemoUser}>Log In as Demo User</button>
       </form>

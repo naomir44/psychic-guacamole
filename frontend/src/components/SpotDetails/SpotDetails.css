@@ -9,10 +9,10 @@ main {
   margin-left: 950px;
 }
 
-h1 {
+.title {
   font-size: 28px;
   margin-bottom: 16px;
-  color: #333;
+  color: rgb(132, 203, 226);
 }
 
 div {
@@ -102,4 +102,7 @@ p text{
   border-radius: 4px;
   position: relative;
   background-color: #F9F9F9;
+}
+.delete-button {
+  color: rgb(132, 203, 226);
 }

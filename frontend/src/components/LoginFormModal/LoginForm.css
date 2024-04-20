@@ -43,19 +43,10 @@ form button[type="submit"] {
 }
 
 
-form button[type="submit"]:hover {
+/* form button[type="submit"]:hover {
   background-color:#E53E3E;
-}
-
-/* form button.demo-user {
-  background: none;
-  color: #555;
-  padding: 0;
-  border: none;
-  display: block;
-  margin-top: 15px;
-  cursor: pointer;
 } */
+
 .demo-user {
   width: 100%;
   padding: 10px;
@@ -73,4 +64,12 @@ form button[type="submit"]:hover {
 h1 {
   text-align: center;
   color: #333;
+}
+form button:disabled {
+  background-color: #333;
+  color: #888;
+  cursor: not-allowed;
+}
+.error-text {
+  color:red
 }
