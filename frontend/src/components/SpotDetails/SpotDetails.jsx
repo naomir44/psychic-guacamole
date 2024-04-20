@@ -67,8 +67,8 @@ const SpotDetails = () => {
                   modalComponent={<ReviewFormModal spotId={spotId} />} />
               </span>
             </div>
-            <span hidden={reviewList.length !== 0 || (session.user
-              && spot.Owner.id === session.id)}>
+            <span hidden={reviewList.length !== 0 || (session?.user
+              && spot.Owner.id === session?.id)}>
               Be the first to post a review!
             </span>
             <div className="review-data">
