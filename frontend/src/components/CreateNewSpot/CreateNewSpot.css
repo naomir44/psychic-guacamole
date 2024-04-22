@@ -3,7 +3,7 @@
   /* max-width: 600px; */
   width: 500px;
   /* margin: 20px auto; */
-  padding: 20px;
+  padding: 30px;
   padding-left: 6px;
   background: #f9f9f9;
   border: 1px solid #ddd;
@@ -19,13 +19,13 @@
 
 .city-state {
 display: flex;
-width: 600px;
-gap: 90px;
+width: 100px;
+gap: 60px;
 }
 .lng-lat {
   display: flex;
   width: 500px;
-  gap: 90px;
+  gap: 60px;
 }
 
 
@@ -38,13 +38,16 @@ h2{
   text-align: center;
   font-size: 14px;
 }
-
+.create-spot-errors {
+  color: red;
+  font-size: small;
+}
 
 p {
   color: #666;
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 20px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 

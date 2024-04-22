@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createSpot } from "../../store/spots";
+import { createSpot, fetchAddImage } from "../../store/spots";
 import { useNavigate } from 'react-router-dom';
 import './CreateNewSpot.css';
 
@@ -57,14 +57,18 @@ const CreateNewSpot = () => {
         name,
         price,
         lat: latitude,
-        lng: longitude
-        // img1,
-        // img2,
-        // img3,
-        // img4,
-        // img5
+        lng: longitude,
+        previewImage: img1
     }
+
     const newSpot = await dispatch(createSpot(payload))
+    const newSpotId = newSpot.id
+    const newSpotPreviewImage = {
+      url: img1,
+      preview: true,
+      spotId: newSpotId
+    }
+    await dispatch(fetchAddImage(+newSpotId, newSpotPreviewImage))
     if (newSpot) {
       navigate(`/spots/${newSpot.id}`)
     }
@@ -88,7 +92,7 @@ return (
 
         />
       </label>
-      {errors.country && <p>{errors.country}</p>}
+      {errors.country && <div className="create-spot-errors">{errors.country}</div>}
       <label>Street Address
         <input type="text"
           value={address}
@@ -97,7 +101,7 @@ return (
 
         />
       </label>
-      {errors.address && <p>{errors.address}</p>}
+      {errors.address && <div className="create-spot-errors">{errors.address}</div>}
       <div className="city-state">
       <label>City
         <input type="text"
@@ -107,7 +111,6 @@ return (
 
         />
       </label>
-      {errors.city && <p>{errors.city}</p>}
       <label>State
         <input type="text"
           value={state}
@@ -117,7 +120,10 @@ return (
         />
       </label>
       </div>
-      {errors.state && <p>{errors.state}</p>}
+      <div>
+      {errors.city && <div className="create-spot-errors">{errors.city}</div>}
+      {errors.state && <div className="create-spot-errors">{errors.state}</div>}
+      </div>
     <div className="lng-lat">
     <label>Latitude
         <input type="text"
@@ -145,8 +151,9 @@ return (
         placeholder="Please write at least 30 characters"
 
       />
+
+      {errors.description && <div className="create-spot-errors">{errors.description}</div>}
       <div className="line"></div>
-      {errors.description && <p>{errors.description}</p>}
       <h2>Create a name for your spot</h2>
       <p>Catch guests&apos; attention with a spot name that highlights what makes
         your place special.</p>
@@ -158,7 +165,7 @@ return (
         placeholder="Name of your spot"
 
       />
-      {errors.name && <p>{errors.name}</p>}
+      {errors.name && <div className="create-spot-errors">{errors.name}</div>}
       <div className="line"></div>
       <h2>Set a base price for your spot</h2>
       <p>Competitive pricing can help your listing stand out and rank higher
@@ -175,7 +182,7 @@ return (
 
         />
       </label>
-      {errors.price && <p>{errors.price}</p>}
+      {errors.price && <div className="create-spot-errors">{errors.price}</div>}
       <div className="line"></div>
       <h2>Liven up your spot with photos</h2>
       <p>Submit a link to at least one photo to publish your spot</p>
@@ -185,7 +192,7 @@ return (
         placeholder="Preview Image URL"
 
       />
-      {errors.img1 && <p>{errors.img1}</p>}
+      {errors.img1 && <div className="create-spot-errors">{errors.img1}</div>}
 
       <input type="text"
         value={img2}

@@ -15,6 +15,10 @@
 .line {
   border: 1px #000 solid;
 }
+.manage-errors {
+  color: red;
+  font-size: small;
+}
 
 .city-state {
 display: flex;

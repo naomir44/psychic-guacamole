@@ -99,7 +99,7 @@ return (
 
         />
       </label>
-      {errors.country && <p>{errors.country}</p>}
+      {errors.country && <div className="manage-errors">{errors.country}</div>}
       <label>Street Address
         <input type="text"
           value={address}
@@ -108,7 +108,7 @@ return (
 
         />
       </label>
-      {errors.address && <p>{errors.address}</p>}
+      {errors.address && <div className="manage-errors">{errors.address}</div>}
      <div className="city-state">
      <label>City
         <input type="text"
@@ -118,7 +118,7 @@ return (
 
         />
       </label>
-      {errors.city && <p>{errors.city}</p>}
+      {errors.city && <div className="manage-errors">{errors.city}</div>}
       <label>State
         <input type="text"
           value={state}
@@ -128,7 +128,7 @@ return (
         />
       </label>
      </div>
-      {errors.state && <p>{errors.state}</p>}
+      {errors.state && <div className="manage-errors">{errors.state}</div>}
     <div className="lng-lat">
     <label>Latitude
         <input type="text"
@@ -156,7 +156,7 @@ return (
         placeholder="Please write at least 30 characters"
 
       />
-      {errors.description && <p>{errors.description}</p>}
+      {errors.description && <div className="manage-errors">{errors.description}</div>}
       <div className="line"></div>
       <h2>Create a name for your spot</h2>
       <p>Catch guest&apos;s attention with a spot name that highlights what makes
@@ -168,7 +168,7 @@ return (
         placeholder="Name of your spot"
 
       />
-      {errors.name && <p>{errors.name}</p>}
+      {errors.name && <div className="manage-errors">{errors.name}</div >}
       <div className="line"></div>
       <h2>Set a base price for your spot</h2>
       <p>Competitive pricing can help your listing stand out and rank higher
@@ -184,7 +184,7 @@ return (
 
         />
       </label>
-      {errors.price && <p>{errors.price}</p>}
+      {errors.price && <div className="manage-errors">{errors.price}</div>}
       <div className="line"></div>
       <h2>Liven up your spot with photos</h2>
       <p>Submit a link to at least one photo to publish your spot</p>
@@ -194,7 +194,7 @@ return (
         placeholder="Preview Image URL"
 
       />
-      {errors.img1 && <p>{errors.img1}</p>}
+      {errors.img1 && <div className="manage-errors">{errors.img1}</div>}
 
       <input type="text"
         value={img2}
