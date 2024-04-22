@@ -1,18 +1,42 @@
 
 .new-spot-form {
-  max-width: 600px;
-  margin: 20px auto;
+  /* max-width: 600px; */
+  width: 500px;
+  /* margin: 20px auto; */
   padding: 20px;
+  padding-left: 6px;
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
 }
+.create-spot-button {
+  width: 20px;
+}
+
+.line {
+  border: 1px #000 solid;
+}
+
+.city-state {
+display: flex;
+width: 600px;
+gap: 90px;
+}
+.lng-lat {
+  display: flex;
+  width: 500px;
+  gap: 90px;
+}
 
 
-h1, h2 {
+.create-new-spot-h1{
   color: #333;
   margin-bottom: 10px;
   text-align: center;
+}
+h2{
+  text-align: center;
+  font-size: 14px;
 }
 
 
@@ -34,15 +58,22 @@ p {
 
 
 .new-spot-form label {
-  display: block;
+  /* display: block; */
   color: #000;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
+.price-container {
+  display: flex;
+}
+.dollar-sign {
+  margin: 10px;
+  margin-top: 15px;
+}
 
 .new-spot-form p {
-  color: red;
+  color: rgb(68, 66, 66);
   font-size: 12px;
 }
 
@@ -58,9 +89,9 @@ p {
 }
 
 
-.new-spot-form button:hover {
+/* .new-spot-form button:hover {
   background-color: #0056b3;
-}
+} */
 
 .new-spot-form button:disabled {
   background-color: #ccc;

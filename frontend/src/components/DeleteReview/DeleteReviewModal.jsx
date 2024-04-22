@@ -30,7 +30,7 @@ const handleClick = (e) => {
         {errors.message && (
           <div>{errors}</div>
         )}
-        <div>
+        <div className="buttons">
           <button onClick={handleClick} className='delete-button'> Yes (Delete Review)</button>
           <button onClick={closeModal} className='cancel-button'> No (Keep Review)</button>
         </div>

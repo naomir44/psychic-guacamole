@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
         <div className='app-name'>Anywhere Home</div>
       <div className="create-new-spot-container">
         <NavLink to='/spots/new'>
-          <button hidden={!sessionUser} className='create-new-spot'>Create New Spot</button>
+          <div hidden={!sessionUser} className='create-new-spot-button'>Create New Spot</div>
         </NavLink>
       </div>
       {isLoaded && (

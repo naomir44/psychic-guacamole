@@ -65,12 +65,16 @@ align-items: center;
   flex-grow: 1;
 }
 
-.create-new-spot {
-  background-color: #FF5A5F;
-  color: white;
-  padding: 10px 15px;
+.create-new-spot-button {
+  color: lightskyblue;
+  /* padding: 10px 15px; */
+  padding-top: 12px;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
 }
 
 .create-new-spot:hover {

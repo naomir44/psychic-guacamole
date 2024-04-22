@@ -5,6 +5,10 @@
   background-color: #E53E3E;
 }
 
-.delete-spot-modal:cancel-button {
+.cancel-button {
   background-color: darkgray;
+}
+.buttons{
+  display: grid;
+  align-items: center;
 }

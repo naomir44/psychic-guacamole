@@ -53,7 +53,7 @@ function LoginFormModal() {
 
   return (
     <>
-    <h1>Log In</h1>
+    <h1 className='log-in-h1'>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Username or Email
@@ -84,7 +84,7 @@ function LoginFormModal() {
           )}
         </div>
         <button type="submit" disabled={!isValid()}>Log In</button>
-        <button className='demo-user' onClick={handleDemoUser}>Log In as Demo User</button>
+        <div className='demo-user' onClick={handleDemoUser}>Demo User</div>
       </form>
     </>
   );

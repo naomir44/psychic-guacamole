@@ -1,11 +1,11 @@
 
-button.cancel-button {
-  background-color:#FF5A5F;
+.cancel-button {
+  background-color: darkgrey;
   align-items:center ;
 }
 
 button.cancel-button:hover {
-  background-color: #E53E3E;
+  background-color: rgb(106, 99, 99);
 }
 
 .delete-button {

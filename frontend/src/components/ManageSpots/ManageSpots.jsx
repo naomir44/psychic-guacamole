@@ -21,25 +21,28 @@ const ManageSpots = () => {
 
 if (spotList.length === 0) {
   return (
+    <>
+    <h1>Manage Spots</h1>
     <NavLink to={'/spots/new'}>
       <button>Create a new Spot</button>
     </NavLink>
+    </>
   )
 }
 return (
 
 <>
-<h1>Manage Spots</h1>
+<h1 className="manage-spots-h1">Manage Spots</h1>
 <main className="manage-spots">
   {spotList.map((spot) => (
     <div key={spot.id} className="spot">
       <NavLink to={`/spots/${spot.id}`} className="spot-link">
         <div className="spot-container">
           <img src={spot.previewImage} alt={`${spot.name}`} className="spot-image" />
-          <div className="spot-details">
-          <span className="spot-rating">{`⭐️ ${spot.avgRating}`}</span>
-            <span className="spot-location">{`${spot.city}, ${spot.state}`}</span>
-            <span className="spot-price">{`$${spot.price} night`}</span>
+          <div className="manage-details">
+            <span className="manage-location">{`${spot.city}, ${spot.state}`}</span>
+            <span className="manage-rating">{spot.avgRating > 0 ? `⭐️ ${parseInt(spot.avgRating).toFixed(1)}`:"⭐️New"}</span>
+            <span className="manage-price">{`$${spot.price} night`}</span>
           </div>
         </div>
       </NavLink>

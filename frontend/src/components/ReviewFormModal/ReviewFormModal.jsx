@@ -42,8 +42,7 @@ const disabled = reviewText.length < 10 || currSelection === 0;
 
 
 return (
-  <div className="review-modal-itself">
-    <form onSubmit={handleSubmit}>
+    <form className="review-modal-itself" onSubmit={handleSubmit}>
       <h2>How was your stay?</h2>
       <textarea className="review-text-box"
         placeholder="Leave your review here..."
@@ -54,17 +53,15 @@ return (
       {selectStar.map(selection => {
        return  <div key={selection} className={currSelection >= selection || hover >= selection ? "filled": "empty"}
         onMouseEnter={() => setHover(selection)}
-        onMouseLeave={() => setHover[0]}
+        onMouseLeave={() => setHover(0)}
         onClick={() => setCurrSelection(selection)}>
           <FaStar />
           </div>
-      })}
-      Stars
+      })}Stars
      </div>
       <button disabled={disabled} type="submit">Submit Your Review</button>
-      <button type="button" onClick={closeModal}>Cancel</button>
+      {/* <button type="button" onClick={closeModal}>Cancel</button> */}
     </form>
-  </div>
 );
 };
 

@@ -7,7 +7,9 @@ form {
   width: 300px;
   margin: 0 auto;
 }
-
+.log-in-h1 {
+  text-align: center;
+}
 
 form label {
   display: block;
@@ -50,15 +52,12 @@ form button[type="submit"] {
 .demo-user {
   width: 100%;
   padding: 10px;
-  background-color:#FF5A5F;
-  color: white;
+  color: lightskyblue;
   border: none;
   border-radius: 4px;
   margin-top: 20px;
   cursor: pointer;
-}
-.demo-user:hover {
-  background-color: #E53E3E;
+  text-align: center;
 }
 
 h1 {
@@ -66,8 +65,8 @@ h1 {
   color: #333;
 }
 form button:disabled {
-  background-color: #333;
-  color: #888;
+  background-color: darkgrey;
+  color: white;
   cursor: not-allowed;
 }
 .error-text {

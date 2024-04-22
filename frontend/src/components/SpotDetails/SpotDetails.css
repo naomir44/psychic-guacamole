@@ -12,7 +12,8 @@ main {
 .title {
   font-size: 28px;
   margin-bottom: 16px;
-  color: rgb(132, 203, 226);
+  color: black;
+  text-align: left;
 }
 
 div {
@@ -35,20 +36,17 @@ div {
 .spot-description {
   display: inline;
 }
+
 .reserve-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: repeat(2, .5fr);
   border: 1px solid black;
-  padding: 10px;
-  width: 145px;
-  height: max-content;
-  margin-top: 16px;
-  background-color: #F9F9F9;
-  position: relative;
-  margin-left: 20px;
-  border-radius: 10%;
-  /* font-weight: bold; */
+  border-radius: 10px;
+  padding: 20px;
+  /* margin-bottom: 10px; */
+  align-items: center;
+  margin-top: 8px;
 }
 
 .reserve-button {
@@ -60,7 +58,12 @@ div {
   cursor: pointer;
   font-weight: bold;
   border-radius: 4px;
-  margin-top: 12px;
+  margin-top: 10px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.spot-stars {
+  padding-left: 10px;
 }
 
 .reserve-button:hover {
@@ -75,9 +78,15 @@ div {
   margin-bottom: 12px;
   border-top: #333;
 }
+.review-info {
+  display: flex;
+  align-items: flex-start;
+}
 
 .actual-review {
   font-weight: bold;
+  display: flex;
+  align-items: flex-start;
 }
 
 .star-rating {
@@ -102,7 +111,4 @@ p text{
   border-radius: 4px;
   position: relative;
   background-color: #F9F9F9;
-}
-.delete-button {
-  color: rgb(132, 203, 226);
 }

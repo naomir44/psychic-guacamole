@@ -1,42 +1,82 @@
 .update-spot-form {
-  max-width: 600px;
-  margin: 20px auto;
+  /* max-width: 600px; */
+  width: 500px;
+  /* margin: 20px auto; */
   padding: 20px;
+  padding-left: 6px;
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
 }
+.create-spot-button {
+  width: 20px;
+}
 
-h1, h2 {
+.line {
+  border: 1px #000 solid;
+}
+
+.city-state {
+display: flex;
+width: 600px;
+gap: 90px;
+}
+.lng-lat {
+  display: flex;
+  width: 500px;
+  gap: 90px;
+}
+
+
+.update-spot-h1{
   color: #333;
   margin-bottom: 10px;
+  text-align: center;
 }
+h2{
+  text-align: center;
+  font-size: 14px;
+}
+
+
 p {
   color: #666;
   font-size: 14px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
-.update-spot-form input[type="text"] {
+
+.new-spot-form input[type="text"] {
   width: 100%;
   padding: 8px;
   margin: 10px 0 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.update-spot-form label {
-  display: block;
+
+
+.new-spot-form label {
+  /* display: block; */
   color: #000;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.update-spot-form p {
-  color: red;
+.price-container {
+  display: flex;
+}
+.dollar-sign {
+  margin: 10px;
+  margin-top: 15px;
+}
+
+.new-spot-form p {
+  color: rgb(68, 66, 66);
   font-size: 12px;
 }
 
-.update-spot-form button {
+.new-spot-form button {
   width: 100%;
   padding: 10px;
   background-color: salmon;
@@ -48,11 +88,11 @@ p {
 }
 
 
-.update-spot-form button:hover {
+/* .new-spot-form button:hover {
   background-color: #0056b3;
-}
+} */
 
-.update-spot-form button:disabled {
+.new-spot-form button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }

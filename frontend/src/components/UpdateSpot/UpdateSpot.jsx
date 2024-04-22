@@ -84,13 +84,13 @@ return (
     isLoaded &&
     <>
 
-    <h1>Update your Spot</h1>
+    <h1 className="update-spot-h1">Update your Spot</h1>
+    <form className="update-spot-form" onSubmit={handleSubmit}>
     <h2>Where&apos;s your place located?</h2>
     <p>
       Guests will only get your exact address once they booked a
       reservation.
     </p>
-    <form className="update-spot-form" onSubmit={handleSubmit}>
       <label>Country
         <input type="text"
           value={country}
@@ -109,7 +109,8 @@ return (
         />
       </label>
       {errors.address && <p>{errors.address}</p>}
-      <label>City
+     <div className="city-state">
+     <label>City
         <input type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
@@ -126,8 +127,10 @@ return (
 
         />
       </label>
+     </div>
       {errors.state && <p>{errors.state}</p>}
-      <label>Latitude
+    <div className="lng-lat">
+    <label>Latitude
         <input type="text"
           value={latitude}
           onChange={(e) => setLatitude(e.target.value)}
@@ -141,16 +144,20 @@ return (
           placeholder="Longitude"
         />
       </label>
+    </div>
+    <div className="line"></div>
       <h2>Describe your place to guests</h2>
       <p>Mention the best features of your space, any special amentities like
         fast wifi or parking, and what you love about the neighborhood.</p>
-      <input type="text"
+      <input className="description"
+      type="text"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Please write at least 30 characters"
 
       />
       {errors.description && <p>{errors.description}</p>}
+      <div className="line"></div>
       <h2>Create a name for your spot</h2>
       <p>Catch guest&apos;s attention with a spot name that highlights what makes
         your place special.</p>
@@ -162,12 +169,15 @@ return (
 
       />
       {errors.name && <p>{errors.name}</p>}
+      <div className="line"></div>
       <h2>Set a base price for your spot</h2>
       <p>Competitive pricing can help your listing stand out and rank higher
         in search results.</p>
 
-      <label>$
-        <input type="text"
+      <label className="price-container">
+        <div className="dollar-sign">$</div>
+        <input className="price-per-night"
+        type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           placeholder="Price per night (USD)"
@@ -175,7 +185,7 @@ return (
         />
       </label>
       {errors.price && <p>{errors.price}</p>}
-
+      <div className="line"></div>
       <h2>Liven up your spot with photos</h2>
       <p>Submit a link to at least one photo to publish your spot</p>
       <input type="text"
